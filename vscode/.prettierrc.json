@@ -1,0 +1,17 @@
+{
+  "trailingComma": "es5",
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": true,
+  "quoteProps": "consistent",
+  "endOfLine": "lf",
+  "trailingCommaPHP": "php7.3",
+  "overrides": [
+    {
+      "files": "*.js",
+      "options": {
+        "parser": "babel"
+      }
+    }
+  ]
+}

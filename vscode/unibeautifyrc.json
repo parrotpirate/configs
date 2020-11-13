@@ -1,0 +1,75 @@
+{
+  "HTML": {
+    "beautifiers": [
+      "Pretty Diff", "JS-Beautify"
+    ],
+    "indent_size": 2,
+    "indent_style": "space",
+    "quotes": "single",
+    "align_assignments": true,
+    "wrap_attributes_indent_size": 2
+  },
+  "JSON": {
+    "beautifiers": [
+      "Prettier", "Pretty Diff", "JS-Beautify"
+    ],
+    "indent_size": 2,
+    "indent_style": "space"
+  },
+  "JavaScript": {
+    "beautifiers": [
+      "Prettier", "Pretty Diff", "JS-Beautify", "ESLint"
+    ],
+    "indent_size": 2,
+    "indent_style": "space",
+    "quotes": "single",
+    "align_assignments": true,
+    "break_chained_methods": false,
+    "end_with_comma": false,
+    "end_with_semicolon": true,
+    "multiline_ternary": "never",
+    "space_after_anon_function": true
+  },
+  "Markdown": {
+    "beautifiers": ["Prettier"],
+    "indent_size": 2,
+    "indent_style": "space"
+  },
+  "PHP": {
+    "beautifiers": ["PHP-CS-Fixer"]
+  },
+  "SCSS": {
+    "beautifiers": [
+      "Prettier", "Pretty Diff"
+    ],
+    "indent_size": 2,
+    "indent_style": "space",
+    "quotes": "single",
+    "align_assignments": true,
+    "newline_between_rules": "true"
+  },
+  "TypeScript": {
+    "beautifiers": [
+      "Prettier", "Pretty Diff"
+    ],
+    "indent_size": 2,
+    "indent_style": "space",
+    "quotes": "single",
+    "align_assignments": true,
+    "break_chained_methods": false,
+    "end_with_semicolon": true,
+    "multiline_ternary": "never",
+    "space_after_anon_function": true
+  },
+  "CSS": {
+    "beautifiers": [
+      "Prettier", "Pretty Diff", "JS-Beautify"
+    ],
+    "indent_size": 2,
+    "indent_style": "space",
+    "quotes": "single",
+    "align_assignments": true,
+    "end_with_newline": "true",
+    "newline_between_rules": "true"
+  }
+}

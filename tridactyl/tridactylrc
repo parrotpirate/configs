@@ -1,0 +1,125 @@
+"vimt: set filetype=tridactyl
+sanitise tridactyllocal tridactylsync
+"---
+
+"CONFIG SETTINGS
+
+"---
+set newtab http://www.e-try.com/black.htm
+
+colourscheme quake
+" colourscheme greenmat
+
+" Sometimes the status bar in the bottom left corner overlaps the Tridactyl command line, so set an option to move the status bar to the right.
+"guiset_quiet hoverlink right
+
+guiset_quiet hoverlink top-right 
+guiset_quiet statuspanel top-right
+set smoothscroll true
+set allowautofocus false
+" ALLOW AUTOFOCUS ON WORDPRESS LOGIN SCREEN
+seturl .*\/wp-login.* allowautofocus true
+" set hintfiltermode vimperator
+set hintfiltermode vimperator-reflow
+" set hintdelay 100
+" set hintnames numeric
+set hintchars 1234567890
+set hintnames uniform
+"set editorcmd /System/Volumes/Data/usr/local/Cellar/macvim/*/bin/mvim -f
+set editorcmd /usr/local/Cellar/neovim-dot-app/HEAD-34efe5c/bin/gnvim -f
+
+set modeindicatorshowkeys true
+set visualexitauto false
+"set tabopencontaineraware true
+
+" But also support Tridactyl search too.
+"bind / fillcmdline find
+"bind ? fillcmdline find -?
+"bind n findnext 1
+"bind N findnext -1
+" Remove search highlighting.
+"bind ,<Space> nohlsearch
+
+" Stupid workaround to let hint -; be used with composite which steals semi-colons
+command hint_focus hint -;
+" Open right click menu on links
+"bind ;c composite hint_focus; !s xdotool key Menu
+" bind ,c hint -Jc input[type="checkbox"]
+bind ,,; fillcmdline_notrail
+bind c hint -Jc input[type="checkbox"]
+" bind ,mc hint -qJc input[type="checkbox"]
+bind mc hint -qJc input[type="checkbox"]
+" bind ,C hint -J;c input[type="checkbox"]
+bind C hint -J;c input[type="checkbox"]
+bind t hint -t
+" bind ct hint -tJ
+" bind cf hint -J
+" bind cF hint -bJ
+" bind ,b hint -b
+"bind ,f hint -j
+bind mf hint -qb
+" Handy multiwindow/multitasking binds
+bind gd tabdetach
+bind gD fillcmdline tabgrab
+bind gxt composite tabnext | sleep 1 | tabclose
+bind gxT composite tabprev | sleep 1 | tabclose
+bind ,f hint -;
+command getScrollableCustom js var r=document.querySelectorAll("div, ul, ol");for(var a=0;a<r.length;a++){var o=r[a];if(o.scrollHeight>o.offsetHeight){o.classList.add("sdp-custom-scrollable")}};
+command hintScrollableCustom hint -c; [class*="sdp-custom-scrollable"]
+bind ,s composite getScrollableCustom | hintScrollableCustom
+bind ,h hint -h
+bind <c-e> hint -f Edit
+" bind E tabprev
+" bind R tabnext
+bind d scrollpage 0.5
+bind e scrollpage -0.5
+bind D scrollpage 1
+bind E scrollpage -1
+
+bind i hint -Jc input[type="text"], textarea
+bind I composite hint -Jc input[type="text"], textarea | editor
+bind yi composite hint -J-pipe input,textarea value | yank
+bind ya hint -y
+bind yt hint -p
+bind b fillcmdline bmarks
+bind B fillcmdline bmarks -t
+bind O fillcmdline tabopen
+bind T fillcmdline taball
+bind --mode=hint <Space> hint.pushSpace
+bind --mode=normal V mode visual
+bind --mode=visual V mode normal
+bind --mode=visual y composite js document.getSelection().toString() | yank; js document.getSelection().empty(); mode normal; hidecmdline
+bind --mode=normal <C-v> mode ignore
+bind --mode=ignore <C-v> mode normal
+
+bind x tabclose
+bind X undo tab
+
+bind --mode=ex          <C-a>   text.beginning_of_line
+bind --mode=insert      <C-a>   text.beginning_of_line
+bind --mode=input       <C-a>   text.beginning_of_line
+bind --mode=ex          <C-e>   text.end_of_line
+bind --mode=insert      <C-e>   text.end_of_line
+bind --mode=input       <C-e>   text.end_of_line
+bind --mode=ex          <C-f>   text.forward_word
+bind --mode=insert      <C-f>   text.forward_word
+bind --mode=input       <C-f>   text.forward_word
+bind --mode=ex          <C-k>   text.kill_line
+bind --mode=insert      <C-k>   text.kill_line
+bind --mode=input       <C-k>   text.kill_line
+bind --mode=ex          <C-u>   text.backward_kill_line
+bind --mode=insert      <C-u>   text.backward_kill_line
+bind --mode=input       <C-u>   text.backward_kill_line
+" Requires custom firefox build: https://github.com/glacambre/firefox-patches
+bind --mode=ex          <C-w>   text.backward_kill_word
+bind --mode=insert      <C-w>   text.backward_kill_word
+bind --mode=input       <C-w>   text.backward_kill_word
+
+" command scrollDown js function n(){function r(n){if(n==null){return null}if(n.scrollHeight>n.clientHeight){return n}else{return r(n.parentNode)}}var n=document.activeElement;var u=r(n);u.scrollTop+=100}n();
+command scrollUp js function n(){function r(n){if(n==null){return null}if(n.scrollHeight>n.clientHeight){return n}else{return r(n.parentNode)}}var n=document.activeElement;var u=r(n);u.scrollTop=0}n();
+" command scrollUp js function n(){function r(n){if(n==null){return null}if(n.scrollHeight>n.clientHeight){return n}else{return r(n.parentNode)}}var n=document.activeElement;var u=r(n);u.scrollTop-=100}n();
+command scrollDown js function n(){function r(n){if(n==null){return null}if(n.scrollHeight>n.clientHeight){return n}else{return r(n.parentNode)}}var n=document.activeElement;var u=r(n);u.scrollTop=u.scrollTopMax}n();
+command ta tabgrab
+
+bind <C-d> scrollDown
+bind <C-e> scrollUp
