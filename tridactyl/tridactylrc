@@ -64,7 +64,8 @@ bind gD fillcmdline tabgrab
 bind gxt composite tabnext | sleep 1 | tabclose
 bind gxT composite tabprev | sleep 1 | tabclose
 bind ,f hint -;
-command getScrollableCustom js var r=document.querySelectorAll("div, ul, ol");for(var a=0;a<r.length;a++){var o=r[a];if(o.scrollHeight>o.offsetHeight){o.classList.add("sdp-custom-scrollable")}};
+" command getScrollableCustom js var r=document.querySelectorAll("div, ul, ol");for(var a=0;a<r.length;a++){var o=r[a];if(o.scrollHeight>o.offsetHeight){o.classList.add("sdp-custom-scrollable")}};
+command getScrollableCustom js var ElementsWithScrolls=function(){function a(a,b){return e(a)[b]}function b(b){return b.offsetHeight<b.scrollHeight&&c(a(b,"overflow-y"))}function c(a){return"scroll"==a||"auto"==a}function d(a){return b(a)}var e=document.body&&document.body.currentStyle?function(a){return a.currentStyle}:function(a){return document.defaultView.getComputedStyle(a,null)};return function(){for(var b=[].filter.call(document.querySelectorAll("*"),d),c=0;c<b.length;c++)b[c].classList.add("sdp-custom-scrollable")}}();ElementsWithScrolls();
 command hintScrollableCustom hint -c; [class*="sdp-custom-scrollable"]
 bind ,s composite getScrollableCustom | hintScrollableCustom
 bind ,h hint -h
