@@ -22,9 +22,9 @@ seturl .*\/wp-login.* allowautofocus true
 " set hintfiltermode vimperator
 set hintfiltermode vimperator-reflow
 " set hintdelay 100
-" set hintnames numeric
-set hintchars 1234567890
-set hintnames uniform
+set hintnames numeric
+" set hintchars 1234567890
+" set hintnames uniform
 "set editorcmd /System/Volumes/Data/usr/local/Cellar/macvim/*/bin/mvim -f
 set editorcmd /usr/local/Cellar/neovim-dot-app/HEAD-34efe5c/bin/gnvim -f
 
@@ -51,7 +51,7 @@ bind c hint -Jc input[type="checkbox"]
 bind mc hint -qJc input[type="checkbox"]
 " bind ,C hint -J;c input[type="checkbox"]
 bind C hint -J;c input[type="checkbox"]
-bind t hint -t
+bind t fillcmdline taball
 " bind ct hint -tJ
 " bind cf hint -J
 " bind cF hint -bJ
@@ -61,13 +61,10 @@ bind mf hint -qb
 " Handy multiwindow/multitasking binds
 bind gd tabdetach
 bind gD fillcmdline tabgrab
+command ta tabgrab
 bind gxt composite tabnext | sleep 1 | tabclose
 bind gxT composite tabprev | sleep 1 | tabclose
 bind ,f hint -;
-" command getScrollableCustom js var r=document.querySelectorAll("div, ul, ol");for(var a=0;a<r.length;a++){var o=r[a];if(o.scrollHeight>o.offsetHeight){o.classList.add("sdp-custom-scrollable")}};
-command getScrollableCustom js var ElementsWithScrolls=function(){function a(a,b){return e(a)[b]}function b(b){return b.offsetHeight<b.scrollHeight&&c(a(b,"overflow-y"))}function c(a){return"scroll"==a||"auto"==a}function d(a){return b(a)}var e=document.body&&document.body.currentStyle?function(a){return a.currentStyle}:function(a){return document.defaultView.getComputedStyle(a,null)};return function(){for(var b=[].filter.call(document.querySelectorAll("*"),d),c=0;c<b.length;c++)b[c].classList.add("sdp-custom-scrollable")}}();ElementsWithScrolls();
-command hintScrollableCustom hint -c; [class*="sdp-custom-scrollable"]
-bind ,s composite getScrollableCustom | hintScrollableCustom
 bind ,h hint -h
 bind <c-e> hint -f Edit
 " bind E tabprev
@@ -85,7 +82,7 @@ bind yt hint -p
 bind b fillcmdline bmarks
 bind B fillcmdline bmarks -t
 bind O fillcmdline tabopen
-bind T fillcmdline taball
+bind T hint -t
 bind --mode=hint <Space> hint.pushSpace
 bind --mode=normal V mode visual
 bind --mode=visual V mode normal
@@ -120,7 +117,10 @@ bind --mode=input       <C-w>   text.backward_kill_word
 command scrollUp js function n(){function r(n){if(n==null){return null}if(n.scrollHeight>n.clientHeight){return n}else{return r(n.parentNode)}}var n=document.activeElement;var u=r(n);u.scrollTop=0}n();
 " command scrollUp js function n(){function r(n){if(n==null){return null}if(n.scrollHeight>n.clientHeight){return n}else{return r(n.parentNode)}}var n=document.activeElement;var u=r(n);u.scrollTop-=100}n();
 command scrollDown js function n(){function r(n){if(n==null){return null}if(n.scrollHeight>n.clientHeight){return n}else{return r(n.parentNode)}}var n=document.activeElement;var u=r(n);u.scrollTop=u.scrollTopMax}n();
-command ta tabgrab
+" command getScrollableCustom js var r=document.querySelectorAll("div, ul, ol");for(var a=0;a<r.length;a++){var o=r[a];if(o.scrollHeight>o.offsetHeight){o.classList.add("sdp-custom-scrollable")}};
+command getScrollableCustom js var ElementsWithScrolls=function(){function a(a,b){return e(a)[b]}function b(b){return b.offsetHeight<b.scrollHeight&&c(a(b,"overflow-y"))}function c(a){return"scroll"==a||"auto"==a}function d(a){return b(a)}var e=document.body&&document.body.currentStyle?function(a){return a.currentStyle}:function(a){return document.defaultView.getComputedStyle(a,null)};return function(){for(var b=[].filter.call(document.querySelectorAll("*"),d),c=0;c<b.length;c++)b[c].classList.add("sdp-custom-scrollable")}}();ElementsWithScrolls();
+command hintScrollableCustom hint -c; [class*="sdp-custom-scrollable"]
 
 bind <C-d> scrollDown
 bind <C-e> scrollUp
+bind ,s composite getScrollableCustom | hintScrollableCustom
