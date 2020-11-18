@@ -66,6 +66,8 @@ bind gD fillcmdline tabgrab
 command ta tabgrab
 bind gxt composite tabnext | sleep 1 | tabclose
 bind gxT composite tabprev | sleep 1 | tabclose
+bind f hint -J
+bind ,j hint
 bind ,f hint -;
 bind ,h hint -h
 bind <c-e> hint -f Edit
