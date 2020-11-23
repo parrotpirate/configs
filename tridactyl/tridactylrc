@@ -53,7 +53,8 @@ bind c hint -Jc input[type="checkbox"]
 bind mc hint -qJc input[type="checkbox"]
 " bind ,C hint -J;c input[type="checkbox"]
 bind C hint -J;c input[type="checkbox"]
-bind t fillcmdline taball
+bind ,t fillcmdline taball
+bind ,T fillcmdline tab
 " bind ct hint -tJ
 " bind cf hint -J
 " bind cF hint -bJ
@@ -66,8 +67,7 @@ bind gD fillcmdline tabgrab
 command ta tabgrab
 bind gxt composite tabnext | sleep 1 | tabclose
 bind gxT composite tabprev | sleep 1 | tabclose
-bind f hint -J
-bind ,j hint
+bind ,j hint -J
 bind ,f hint -;
 bind ,h hint -h
 bind <c-e> hint -f Edit
@@ -86,7 +86,7 @@ bind yt hint -p
 bind b fillcmdline bmarks
 bind B fillcmdline bmarks -t
 bind O fillcmdline tabopen
-bind T hint -t
+bind t hint -t
 bind --mode=hint <Space> hint.pushSpace
 bind --mode=normal V mode visual
 bind --mode=visual V mode normal
