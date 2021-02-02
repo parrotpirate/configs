@@ -1,6 +1,7 @@
 " FIRENVIM CONFIG
 if exists('g:started_by_firenvim')
   set laststatus=0
+  set guifont=Hack:h16
   au BufEnter q4launch.atlassian.net_*.txt set filetype=markdown
 else
   set laststatus=2
