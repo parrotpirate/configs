@@ -21,8 +21,9 @@ export ZSH="/Users/stevep/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
-# GITHUB CLI VARIABLES
-export GH_TOKEN='08386368e55dea63684d0c2ec455efd2ef7062d9'
+if [ -f /Users/stevep/.ghtoken ]; then
+  source /Users/stevep/.ghtoken
+fi
 
 # Customise the Powerlevel9k prompts
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=' '
@@ -122,7 +123,7 @@ plugins=(
   git-extras
   git-flow
   git-prune
-  hacker-quotes
+  # hacker-quotes
   npm
   osx
   rsync
@@ -135,7 +136,7 @@ plugins=(
   wp-cli
   yarn
   zsh_reload
-  zsh-apple-touchbar
+  # zsh-apple-touchbar
   zsh-autopair
   zsh-autosuggestions
 )
@@ -244,6 +245,7 @@ alias gp="git push"
 alias gpf="git push --force"
 #Git push everything
 alias gpoat='git push origin --all && git push origin --tags'
+alias greset='git reset --hard; git clean -fd'
 #Git pull origin
 function ggl() {
   if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
@@ -357,7 +359,8 @@ alias vimsnippets="cd ~/.config/nvim/mysnippets/"
 alias vimupdate="nvim -c 'PlugUpgrade | PlugUpdate'"
 
 #Commitizen
-alias commit="npx @stanlindsey/git-cz"
+# alias commit="npx @stanlindsey/git-cz"
+alias commit="npx git-cz"
 
 #Q4VR Dev Startup
 alias vrdevstart="composer update && npm install && npm run watch"
@@ -390,12 +393,12 @@ alias dc="docker-compose"
 alias dce="docker-compose exec"
 alias dcepb="docker-compose exec php bash"
 alias dcu="docker-compose up -d"
+alias dcb="docker-compose up --build --remove-orphans -d"
 alias dcd="docker-compose down -v"
 alias dcs="docker-compose stop"
-alias dwp="docker-compose run --rm wpcli"
+# alias dwp="docker-compose run --rm wpcli"
 alias dockernuke="docker system prune --volumes -f"
-alias q4localsetup="~/q4localsetup.sh"
-alias q4localdev="gh repo clone PropertyBrands/q4-local-dev && cd q4-local-dev"
+alias localsetup="~/q4localsetup.sh"
 
 # Optimize images
 alias optimizeimages="imageoptim ./*"
@@ -514,6 +517,14 @@ function localdockersetup {
   docker-compose up -d
   rm -rf $PWD/wp-content/plugins/really-simple-ssl
   open http://0.0.0.0:8000
+}
+
+function dwp {
+  read "COMMAND?Command: "
+  if [[ "$COMMAND" ]]
+  then
+    docker-compose exec php bash wp $COMMAND --allow-root
+  fi
 }
 
 function dwpsr {
