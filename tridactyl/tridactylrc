@@ -5,7 +5,7 @@ sanitise tridactyllocal tridactylsync
 "CONFIG SETTINGS
 
 "---
-set newtab http://www.e-try.com/black.htm
+" set newtab http://www.e-try.com/black.htm
 
 colourscheme quake
 " colourscheme greenmat
