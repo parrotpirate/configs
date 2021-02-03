@@ -5,6 +5,10 @@ export PATH="$PATH:$HOME/.composer/vendor/bin"
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 export PATH="/Users/stevep/Library/Python/3.7/bin:$PATH"
+
+#NVM setup
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
 # export PATH="/usr/local/opt/valet-php@7.2/bin:$PATH"
 # export PATH="/usr/local/opt/valet-php@7.2/sbin:$PATH"
 export TERM="xterm-256color"
@@ -396,7 +400,6 @@ alias dcu="docker-compose up -d"
 alias dcb="docker-compose up --build --remove-orphans -d"
 alias dcd="docker-compose down -v"
 alias dcs="docker-compose stop"
-# alias dwp="docker-compose run --rm wpcli"
 alias dockernuke="docker system prune --volumes -f"
 alias localsetup="~/q4localsetup.sh"
 
@@ -517,14 +520,6 @@ function localdockersetup {
   docker-compose up -d
   rm -rf $PWD/wp-content/plugins/really-simple-ssl
   open http://0.0.0.0:8000
-}
-
-function dwp {
-  read "COMMAND?Command: "
-  if [[ "$COMMAND" ]]
-  then
-    docker-compose exec php bash wp $COMMAND --allow-root
-  fi
 }
 
 function dwpsr {
