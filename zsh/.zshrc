@@ -400,6 +400,7 @@ alias dcu="docker-compose up -d"
 alias dcb="docker-compose up --build --remove-orphans -d"
 alias dcd="docker-compose down -v"
 alias dcs="docker-compose stop"
+alias dwp="docker-compose exec php wp --allow-root"
 alias dockernuke="docker system prune --volumes -f"
 alias localsetup="~/q4localsetup.sh"
 
