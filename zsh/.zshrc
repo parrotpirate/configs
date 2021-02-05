@@ -531,6 +531,17 @@ function dwpsr {
   fi
 }
 
+# SSH commands
+q4sh() {
+  if [[ "$1" = "vr" ]]; then
+    ssh -p 2200 "$2"@vrhost.q4-vr.com
+  elif [[ "$1" = "dev" ]]; then
+    ssh -p 2200 "$2"@devhost.q4-dev.com
+  else
+    ssh -p 2200 "$1"@q4-host.com
+  fi
+}
+
 # "jj" to enter vi cmd mode
 bindkey "jj" vi-cmd-mode
 
