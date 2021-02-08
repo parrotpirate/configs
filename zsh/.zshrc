@@ -176,7 +176,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="colorls --group-directories-first"
-alias lsa="colorls -a --group-directories-first"
+alias lsa="colorls -A --group-directories-first"
 
 # Edit host file
 alias edithost="sudo nvim /etc/hosts"
@@ -394,8 +394,7 @@ alias createdockerconfig="~/createdockerconfig.sh"
 
 # Docker aliases
 alias dc="docker-compose"
-alias dce="docker-compose exec"
-alias dcepb="docker-compose exec php bash"
+alias dce="docker-compose exec php bash"
 alias dcu="docker-compose up -d"
 alias dcb="docker-compose up --build --remove-orphans -d"
 alias dcd="docker-compose down -v"
