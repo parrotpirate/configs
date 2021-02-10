@@ -186,17 +186,11 @@ alias reload.zsh="source ~/.zshrc"
 alias reload.profile="source ~/.bash_profile"
 alias reload.term="source ~/.bash_profile && source ~/.zshrc"
 
-# Copy the PWD to the Clipboard
-alias cpwd="pwd | tr -d '\n' | pbcopy && echo 'pwd copied to clipboard'"
-
 #rsync with progress bar
 alias rsyncp="rsync -a --info=progress2"
 
 #Kill background jobs
 alias kbj="kill %"
-
-#MacVim
-alias vim="/usr/local/Cellar/macvim/8.1-157/MacVim.app/Contents/MacOS/Vim"
 
 #GIT ALIASES
 #Git branch
@@ -333,17 +327,6 @@ alias cpad="code /Users/stevep/Documents/scratchpad.md"
 alias npad="nvim /Users/stevep/Documents/scratchpad.md"
 alias pad="nvim -c 'set filetype=markdown'"
 
-#taskopen alias
-alias to="taskopen"
-alias tk="task"
-alias tkl="task list"
-
-#bugwarrior-pull alias
-alias bp="bugwarrior-pull && task list ids"
-
-#Timewarrior Report
-alias twr="timew daily_totals :day"
-
 #Firenvim update
 alias firenvimupdate="cd ~/firenvim && git reset --hard && git pull && npm install && npm run build && npm run install_manifests && cd ~"
 
@@ -366,31 +349,14 @@ alias vimupdate="nvim -c 'PlugUpgrade | PlugUpdate'"
 # alias commit="npx @stanlindsey/git-cz"
 alias commit="npx git-cz"
 
-#Q4VR Dev Startup
-alias vrdevstart="composer update && npm install && npm run watch"
-
 #Reset terminal window
 alias reset="~ && clear"
-
-#Git Flow Setup
-alias gfinit="git flow init -d"
-alias gfconfig="git config gitflow.path.hooks ~/git-flow-hooks && git config gitflow.hotfix.finish.message \"Hotfix %tag%\" && git config gitflow.release.finish.message \"Release %tag%\""
 
 #Remove all Docker Images
 alias drma="docker system prune -af"
 alias dcp="docker container prune -f"
 alias dip="docker image prune -af"
 alias dockerclean="docker container prune -f && docker image prune -af"
-
-# Wordrpess database export
-alias wpdbe="wp db export"
-
-# Valet database list
-alias vdbl="valet db list"
-
-# Site launch script
-alias q4sl="~/q4sl.sh"
-alias createdockerconfig="~/createdockerconfig.sh"
 
 # Docker aliases
 alias dc="docker-compose"
@@ -440,17 +406,6 @@ function vsc {
         [[ $1 = /* ]] && argPath="$1" || argPath="$PWD/${1#./}"
         open -a "Visual Studio Code" "$argPath"
     fi
-}
-
-# Wordpress find replace
-function wpsr {
-  wp search-replace "$1" "$2" --skip-columns=guid --skip-tables=wp_users
-}
-
-# Valet drop database
-function vdbd {
-  clipboard="$(pbpaste)"
-  valet db drop -y "$(pbpaste)"
 }
 
 function tks {
@@ -515,21 +470,6 @@ function uatt {
   echo 'Updates complete!'
 }
 
-function localdockersetup {
-  ~/createdockerconfig.sh
-  docker-compose up -d
-  rm -rf $PWD/wp-content/plugins/really-simple-ssl
-  open http://0.0.0.0:8000
-}
-
-function dwpsr {
-  if [ "$1" = "in" ]; then
-    docker-compose run --rm wpcli search-replace "$2" "http://0.0.0.0:8000" --skip-columns=guid --skip-tables=wp_users
-  elif [ "$1" = "out" ]; then
-    docker-compose run --rm wpcli search-replace "http://0.0.0.0:8000" "$2" --skip-columns=guid --skip-tables=wp_users
-  fi
-}
-
 # SSH commands
 q4sh() {
   if [[ "$1" = "vr" ]]; then
@@ -539,6 +479,29 @@ q4sh() {
   else
     ssh -p 2200 "$1"@q4-host.com
   fi
+}
+
+function llst() {
+  LOCALDEV="/Users/stevep/Sites/localdev"
+
+  case $1 in
+
+    create | new)
+      (cd $LOCALDEV; docker compose up -d; docker-compose exec php bash q4-init.sh; docker-compose exec php bash q4-database.sh)
+
+    up | start | resume)
+    (cd $LOCALDEV; docker-compose up -d)
+      ;;
+
+    pause | stop)
+      (cd $LOCALDEV; docker-compose stop) 
+      ;;
+
+    down | remove | delete | kill)
+      (cd $LOCALDEV; docker-compose up -d; docker-compose exec php wp db export seed.sql --allow-root; docker-compose down)
+      ;;
+
+  esac
 }
 
 # "jj" to enter vi cmd mode
