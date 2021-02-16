@@ -487,18 +487,19 @@ function llst() {
   case $1 in
 
     create | new)
-      (cd $LOCALDEV; docker compose up -d; docker-compose exec php bash q4-init.sh; docker-compose exec php bash q4-database.sh)
+      (cd $LOCALDEV; docker-compose up --build -d; sleep 1; docker-compose exec php bash q4-init.sh; sleep 1; docker-compose exec php bash q4-database.sh)
+      ;;
 
     up | start | resume)
-    (cd $LOCALDEV; docker-compose up -d)
+      (cd $LOCALDEV; docker-compose up -d)
       ;;
 
     pause | stop)
-      (cd $LOCALDEV; docker-compose stop) 
+      (cd $LOCALDEV; docker-compose exec php wp db export seed.sql --allow-root; sleep 1; docker-compose stop) 
       ;;
 
     down | remove | delete | kill)
-      (cd $LOCALDEV; docker-compose up -d; docker-compose exec php wp db export seed.sql --allow-root; docker-compose down)
+      (cd $LOCALDEV; docker-compose up -d; sleep 1; docker-compose exec php wp db export seed.sql --allow-root; sleep 1; docker-compose down)
       ;;
 
   esac
