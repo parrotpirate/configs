@@ -495,11 +495,22 @@ function llst() {
       ;;
 
     pause | stop)
-      (cd $LOCALDEV; docker-compose exec php wp db export seed.sql --allow-root; sleep 1; docker-compose stop) 
+      (cd $LOCALDEV; docker-compose stop) 
       ;;
 
     down | remove | delete | kill)
       (cd $LOCALDEV; docker-compose up -d; sleep 1; docker-compose exec php wp db export seed.sql --allow-root; sleep 1; docker-compose down)
+      ;;
+
+    switch | swap)
+      read "NEWMONIKER?New moniker:"
+      (cd $LOCALDEV; 
+      if [[ -f .env ]]
+      then
+        source .env
+        mv .env .$MONIKER
+        mv .$NEWMONIKER .env
+      fi)
       ;;
 
   esac
