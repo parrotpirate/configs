@@ -314,6 +314,9 @@ alias gst='git status'
 #Hit target file/folder with low orbit ion cannon
 alias nuke="rm -rf"
 
+alias newtab="open . -a iterm"
+alias nt="open . -a iterm"
+
 #QMK folder
 alias qmk="cd /Users/stevep/qmk_firmware"
 alias makedox="make ergodox_ez:mk-2:teensy"
