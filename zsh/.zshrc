@@ -495,7 +495,7 @@ function llst() {
       ;;
 
     pause | stop)
-      (cd $LOCALDEV; docker-compose stop) 
+      (cd $LOCALDEV; docker-compose stop)
       ;;
 
     down | remove | delete | kill)
@@ -504,13 +504,26 @@ function llst() {
 
     switch | swap)
       read "NEWMONIKER?New moniker:"
-      (cd $LOCALDEV; 
+      (cd $LOCALDEV;
       if [[ -f .env ]]
       then
         source .env
         mv .env .$MONIKER
         mv .$NEWMONIKER .env
       fi)
+      ;;
+
+    current)
+      (cd $LOCALDEV;
+      if [[ -f .env ]]
+      then
+        source .env
+        echo $MONIKER
+      fi)
+      ;;
+
+    help)
+      echo 'Available Commands:\n---\ncreate\nnew\n---\nup\nstart\nresume\n---\npause\nstop\n---\ndown\nremove\ndelete\nkill\n---\nswitch\nswap\n---\ncurrent'
       ;;
 
   esac
@@ -525,3 +538,5 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
