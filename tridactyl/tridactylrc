@@ -98,6 +98,7 @@ bind --mode=ignore <C-v> mode normal
 
 bind x tabclose
 bind X undo tab
+bind zz winclose
 
 bind --mode=ex          <C-a>   text.beginning_of_line
 bind --mode=insert      <C-a>   text.beginning_of_line
