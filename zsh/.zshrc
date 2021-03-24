@@ -512,7 +512,13 @@ function llst() {
       then
         source .env
         mv .env .$MONIKER
-        mv .$NEWMONIKER .env
+        if [[ -f ."$NEWMONIKER" ]]
+        then
+          mv .$NEWMONIKER .env
+        else
+          cp .env.example .env
+          nvim .env
+        fi
       fi)
       ;;
 
@@ -525,6 +531,14 @@ function llst() {
       fi)
       ;;
 
+    setup)
+      if [[ ! -f wp-config.php ]]
+      then 
+        cp $LOCALDEV/wordpress/wp-config.php .
+        mv /Users/stevep/Downloads/seed.sql .
+      fi
+      ;;
+      
     help)
       echo 'Available Commands:\n---\ncreate\nnew\n---\nup\nstart\nresume\n---\npause\nstop\n---\ndown\nremove\ndelete\nkill\n---\nswitch\nswap\n---\ncurrent'
       ;;
