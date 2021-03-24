@@ -307,7 +307,7 @@ function ggpublish() {
 compdef _git ggpublish=git-checkout
 
 #Git reset
-alias grh='git reset --hard && git clean -f -d'
+alias grh='git reset --hard && git clean -fd'
 #Git status
 alias gst='git status'
 
