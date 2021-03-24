@@ -132,3 +132,6 @@ bind <C-d> scrollDown
 bind <C-e> scrollUp
 bind ,s composite getScrollableCustom | hintScrollableCustom
 
+" EXPERIMENTAL
+set hintautoselect true
+set tabclosepinned false
