@@ -519,6 +519,9 @@ function llst() {
           cp .env.example .env
           nvim .env
         fi
+      else
+          cp .env.example .env
+          nvim .env
       fi)
       ;;
 
