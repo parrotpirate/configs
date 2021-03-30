@@ -490,11 +490,11 @@ function llst() {
   case $1 in
 
     create | new)
-      (cd $LOCALDEV; docker-compose up --build -d; sleep 1; docker-compose exec php bash q4-init.sh; sleep 1; docker-compose exec php bash q4-database.sh)
+      (cd $LOCALDEV; docker-compose up --build -d; sleep 1; docker-compose exec php bash q4-init.sh; sleep 1; docker-compose exec php bash q4-database.sh; open http://localhost:9090/)
       ;;
 
     up | start | resume)
-      (cd $LOCALDEV; docker-compose up -d)
+      (cd $LOCALDEV; docker-compose up -d; open http://localhost:9090/)
       ;;
 
     pause | stop)
