@@ -310,6 +310,7 @@ compdef _git ggpublish=git-checkout
 alias grh='git reset --hard && git clean -fd'
 #Git status
 alias gst='git status'
+alias gsw='git switch'
 
 #Hit target file/folder with low orbit ion cannon
 alias nuke="rm -rf"
