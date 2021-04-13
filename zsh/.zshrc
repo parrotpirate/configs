@@ -509,6 +509,7 @@ function llst() {
     switch | swap)
       read "NEWMONIKER?New moniker:"
       (cd $LOCALDEV;
+      docker-compose stop;
       if [[ -f .env ]]
       then
         source .env
@@ -516,6 +517,8 @@ function llst() {
         if [[ -f ."$NEWMONIKER" ]]
         then
           mv .$NEWMONIKER .env
+          docker-compose up -d;
+          open http://localhost:9090/;
         else
           cp .env.example .env
           nvim .env
@@ -542,9 +545,22 @@ function llst() {
         mv /Users/stevep/Downloads/seed.sql .
       fi
       ;;
+
+    browse | cd)
+      if [[ -f $LOCALDEV/.env ]]; then
+        source $LOCALDEV/.env;
+        cd $WEB_ROOT;
+      else
+        print "No local site currently active."
+      fi
+      ;;
+
+    open)
+      open http://localhost:9090/;
+      ;;
       
     help)
-      echo 'Available Commands:\n---\ncreate\nnew\n---\nup\nstart\nresume\n---\npause\nstop\n---\ndown\nremove\ndelete\nkill\n---\nswitch\nswap\n---\ncurrent'
+      echo 'Available Commands:\n---\ncreate\nnew\n---\nup\nstart\nresume\n---\npause\nstop\n---\ndown\nremove\ndelete\nkill\n---\nswitch\nswap\n---\ncurrent\n---\nsetup\n---\nbrowse\ncd\n---\nopen'
       ;;
 
   esac
