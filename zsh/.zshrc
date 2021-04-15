@@ -326,6 +326,9 @@ alias makegamepad="make ergodox_ez:gamepad:teensy"
 #Sites folder
 alias sites="cd ~/Sites"
 
+# User folder
+alias cdu="cd ~"
+
 #Scratchpad
 alias cpad="code /Users/stevep/Documents/scratchpad.md"
 alias npad="nvim /Users/stevep/Documents/scratchpad.md"
