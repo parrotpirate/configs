@@ -382,6 +382,8 @@ alias imageoptimize="imageoptim ./*"
 alias optimg="imageoptim ./*"
 alias imgopt="imageoptim ./*"
 
+alias llst="~/llst.sh"
+
 #FUCK
 eval "$(thefuck --alias)"
 
@@ -486,87 +488,6 @@ q4sh() {
   else
     ssh -p 2200 "$1"@q4-host.com
   fi
-}
-
-function llst() {
-  LOCALDEV="/Users/stevep/Sites/localdev"
-
-  case $1 in
-
-    create | new)
-      (cd $LOCALDEV; docker-compose up --build -d; sleep 1; docker-compose exec php bash q4-init.sh; sleep 1; docker-compose exec php bash q4-database.sh; open http://localhost:9090/)
-      ;;
-
-    up | start | resume)
-      (cd $LOCALDEV; docker-compose up -d; open http://localhost:9090/)
-      ;;
-
-    pause | stop)
-      (cd $LOCALDEV; docker-compose stop)
-      ;;
-
-    down | remove | delete | kill)
-      (cd $LOCALDEV; docker-compose up -d; sleep 1; docker-compose exec php wp db export seed.sql --allow-root; sleep 1; docker-compose down)
-      ;;
-
-    switch | swap)
-      read "NEWMONIKER?New moniker:"
-      (cd $LOCALDEV;
-      docker-compose stop;
-      if [[ -f .env ]]
-      then
-        source .env
-        mv .env .$MONIKER
-        if [[ -f ."$NEWMONIKER" ]]
-        then
-          mv .$NEWMONIKER .env
-          docker-compose up -d;
-          open http://localhost:9090/;
-        else
-          cp .env.example .env
-          nvim .env
-        fi
-      else
-          cp .env.example .env
-          nvim .env
-      fi)
-      ;;
-
-    current)
-      (cd $LOCALDEV;
-      if [[ -f .env ]]
-      then
-        source .env
-        echo $MONIKER
-      fi)
-      ;;
-
-    setup)
-      if [[ ! -f wp-config.php ]]
-      then 
-        cp $LOCALDEV/wordpress/wp-config.php .
-        mv /Users/stevep/Downloads/seed.sql .
-      fi
-      ;;
-
-    browse | cd)
-      if [[ -f $LOCALDEV/.env ]]; then
-        source $LOCALDEV/.env;
-        cd $WEB_ROOT;
-      else
-        print "No local site currently active."
-      fi
-      ;;
-
-    open)
-      open http://localhost:9090/;
-      ;;
-      
-    help)
-      echo 'Available Commands:\n---\ncreate\nnew\n---\nup\nstart\nresume\n---\npause\nstop\n---\ndown\nremove\ndelete\nkill\n---\nswitch\nswap\n---\ncurrent\n---\nsetup\n---\nbrowse\ncd\n---\nopen'
-      ;;
-
-  esac
 }
 
 # "jj" to enter vi cmd mode
