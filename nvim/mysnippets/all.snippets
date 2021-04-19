@@ -1,7 +1,20 @@
 # Add new admin user
 snippet adminquery "add new admin user"
-INSERT INTO \`wp_users\` (\`user_login\`, \`user_pass\`, \`user_nicename\`, \`user_email\`,\`user_status\`, \`user_registered\`)
-VALUES ('stevep', MD5('`!v getreg("*")`'), 'stevep', 'stephen@q4launch.com', '0', '2020-05-12 17:08:47');
+INSERT INTO \`wp_users\` (\`user_login\`, \`user_pass\`, \`user_nicename\`, \`user_email\`, \`user_status\`, \`display_name\`, \`user_registered\`)
+VALUES ('stevep', MD5('`!v getreg("*")`'), 'stevep', 'stephen.parker@q4launch.com', '0', 'stevep', '2020-05-12 17:08:47');
+
+INSERT INTO \`wp_usermeta\` (\`umeta_id\`, \`user_id\`, \`meta_key\`, \`meta_value\`)
+VALUES (NULL, (Select max(id) FROM wp_users), 'rich_editing', 'true');
+
+INSERT INTO \`wp_usermeta\` (\`umeta_id\`, \`user_id\`, \`meta_key\`, \`meta_value\`)
+VALUES (NULL, (Select max(id) FROM wp_users), 'syntax_highlighting', 'true');
+
+INSERT INTO \`wp_usermeta\` (\`umeta_id\`, \`user_id\`, \`meta_key\`, \`meta_value\`)
+VALUES (NULL, (Select max(id) FROM wp_users), 'admin_color', 'ectoplasm');
+
+
+INSERT INTO \`wp_usermeta\` (\`umeta_id\`, \`user_id\`, \`meta_key\`, \`meta_value\`)
+VALUES (NULL, (Select max(id) FROM wp_users), 'nickname', 'stevep');
 
 INSERT INTO \`wp_usermeta\` (\`umeta_id\`, \`user_id\`, \`meta_key\`, \`meta_value\`)
 VALUES (NULL, (Select max(id) FROM wp_users),
