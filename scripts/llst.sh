@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 {
   LOCALDEV="/Users/stevep/Sites/localdev"
+  readonly ENV="$LOCALDEV/.env"
 
   case $1 in
 
@@ -43,7 +44,9 @@
     ;;
 
   switch | swap)
-    read -r "NEWMONIKER?New moniker:"
+    # read "NEWMONIKER?New moniker: "
+    echo New moniker:
+    read NEWMONIKER
     (
       cd $LOCALDEV || exit
       docker-compose stop
@@ -75,6 +78,13 @@
     )
     ;;
 
+  list)
+    (
+      cd $LOCALDEV || exit
+      ls -Af \.[^'git'][^'env'][^'dock']*
+    )
+    ;;
+
   setup)
     if [[ ! -f wp-config.php ]]; then
       FOLDER=s/MONIKER=.*/MONIKER=${PWD##*/}/
@@ -96,9 +106,10 @@
     ;;
 
   browse | cd)
-    if [[ -f $LOCALDEV/.env ]]; then
-      source $LOCALDEV/.env
+    if [[ -f "$LOCALDEV"/.env ]]; then
+      source $ENV
       cd "$WEB_ROOT" || exit
+      $SHELL
     else
       print "No local site currently active."
     fi
