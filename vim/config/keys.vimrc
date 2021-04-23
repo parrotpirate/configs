@@ -101,6 +101,6 @@ if exists('g:vscode')
   nnoremap <leader>z <Cmd>Wq<cr>
   nnoremap <leader>q <Cmd>Quit!<cr>
   nnoremap gx <Cmd>Quit!<cr>
-  nnoremap <leader>e <Cmd>Edit<cr>
-  nnoremap <leader>E <Cmd>Showcommands<cr>
+  nnoremap <leader>p <Cmd>Edit<cr>
+  nnoremap <leader><leader>P <Cmd>Showcommands<cr>
 endif
