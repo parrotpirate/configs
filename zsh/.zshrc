@@ -9,8 +9,6 @@ export PATH="/Users/stevep/Library/Python/3.7/bin:$PATH"
 #NVM setup
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
-# export PATH="/usr/local/opt/valet-php@7.2/bin:$PATH"
-# export PATH="/usr/local/opt/valet-php@7.2/sbin:$PATH"
 export TERM="xterm-256color"
 export DISPLAY=:0.0
 fpath=(~/.zsh/completions $fpath)
@@ -177,6 +175,13 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="colorls --group-directories-first"
 alias lsa="colorls -A --group-directories-first"
+
+# Jump back to beginning of directory stack
+alias rewind="pushd +0 && dirs -c"
+# View directory stack
+alias dsl="dirs -v"
+# CLEAR DIRECTORY STACK
+alias dsc="dirs -c"
 
 # Edit host file
 alias edithost="sudo nvim /etc/hosts"
