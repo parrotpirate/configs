@@ -25,6 +25,9 @@ command! JiraResponse %s/^[^\n].*$/> &\r\r+ /g
 " Convert to HTML because Microsoft Teams sucks
 command! TC silent write | let @+ = system("pandoc -t html " . shellescape(expand("%:p")))
 
+" Convert to branch name
+command! BN silent %s/.*/\L&/g | %s/\s/-/g | %s/[-]*$//g | yank
+
 " VSCode commands
 if exists('g:vscode')
   command! -bang Showcommands call VSCodeNotify('workbench.action.showCommands')
