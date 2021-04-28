@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 {
-  LOCALDEV="/Users/stevep/Sites/localdev"
+  LOCALDEV="/Users/stevep/.localdev"
   readonly ENV="$LOCALDEV/.env"
 
   case $1 in
