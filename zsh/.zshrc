@@ -389,6 +389,7 @@ alias optimg="imageoptim ./*"
 alias imgopt="imageoptim ./*"
 
 alias llst="~/llst.sh"
+alias localdev="cd ~/.localdev"
 
 #FUCK
 eval "$(thefuck --alias)"
