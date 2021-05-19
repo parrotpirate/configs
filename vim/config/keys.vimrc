@@ -8,6 +8,8 @@ inoremap jj <esc>
 
 if exists('g:started_by_firenvim')
   inoremap <leader>z <c-o>:w <bar> call firenvim#focus_page() <bar> q <cr>
+  inoremap <leader><leader>z <c-o>:w <bar> :call firenvim#press_keys("<LT>CR>") <bar> q <cr>
+  inoremap <leader>q <c-o>:call firenvim#focus_page() <bar> q! <cr>
 else
   inoremap <leader>z <c-o>:wq<cr>
 endif
@@ -40,7 +42,8 @@ if !exists('g:vscode')
   nnoremap <leader>w :update<cr>
 
   if exists('g:started_by_firenvim')
-    nnoremap <leader>z :w <bar> call firenvim#focus_page() <bar> q <cr>
+    nnoremap <leader><leader>z :w <bar> call firenvim#focus_page() <bar> q <cr>
+    nnoremap <leader><leader>z :w <bar> :call firenvim#press_keys("<LT>CR>") <bar> q <cr>
     nnoremap <leader>q :call firenvim#focus_page() <bar> q! <cr>
   else
     nnoremap <leader>z :wq<cr>
