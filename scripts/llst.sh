@@ -8,11 +8,11 @@
   create | new)
     (
       cd $LOCALDEV || exit
-      docker-compose up --build -d
+      docker compose up --build -d
       sleep 1
-      docker-compose exec php bash q4-init.sh
+      docker compose exec php bash q4-init.sh
       sleep 1
-      docker-compose exec php bash q4-database.sh
+      docker compose exec php bash q4-database.sh
       open http://localhost:9090/
     )
     ;;
@@ -20,7 +20,7 @@
   up | start | resume)
     (
       cd $LOCALDEV || exit
-      docker-compose up -d
+      docker compose up -d
       open http://localhost:9090/
     )
     ;;
@@ -28,18 +28,18 @@
   pause | stop)
     (
       cd $LOCALDEV || exit
-      docker-compose stop
+      docker compose stop
     )
     ;;
 
   down | remove | delete | kill)
     (
       cd $LOCALDEV || exit
-      docker-compose up -d
+      docker compose up -d
       sleep 1
-      docker-compose exec php wp db export seed.sql --allow-root
+      docker compose exec php wp db export seed.sql --allow-root
       sleep 1
-      docker-compose down
+      docker compose down
     )
     ;;
 
@@ -49,13 +49,13 @@
     read NEWMONIKER
     (
       cd $LOCALDEV || exit
-      docker-compose stop
+      docker compose stop
       if [[ -f .env ]]; then
         source .env
         mv .env ."$MONIKER"
         if [[ -f ."$NEWMONIKER" ]]; then
           mv ."$NEWMONIKER" .env
-          docker-compose up -d
+          docker compose up -d
           open http://localhost:9090/
         else
           cp .env.example .env
