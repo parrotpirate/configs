@@ -8,10 +8,12 @@ inoremap jj <esc>
 
 if exists('g:started_by_firenvim')
   inoremap <leader>z <c-o>:w <bar> call firenvim#focus_page() <bar> q <cr>
-  inoremap <leader><leader>z <c-o>:w <bar> :call firenvim#press_keys("<LT>CR>") <bar> q <cr>
+  inoremap <leader><leader>z <c-o>:w <bar> call firenvim#press_keys("<LT>CR>") <bar> q <cr>
   inoremap <leader>q <c-o>:call firenvim#focus_page() <bar> q! <cr>
 else
-  inoremap <leader>z <c-o>:wq<cr>
+  inoremap <leader>z <ESC>:update <bar> BufferDeleteOrQuit<cr>
+  inoremap <leader>Q <c-o>:q!<cr>
+  inoremap <leader>q <ESC>:BufferDeleteOrQuit<cr>
 endif
 
 inoremap <leader>w <c-o>:update<cr>
@@ -42,12 +44,13 @@ if !exists('g:vscode')
   nnoremap <leader>w :update<cr>
 
   if exists('g:started_by_firenvim')
-    nnoremap <leader><leader>z :w <bar> call firenvim#focus_page() <bar> q <cr>
-    nnoremap <leader><leader>z :w <bar> :call firenvim#press_keys("<LT>CR>") <bar> q <cr>
+    nnoremap <leader>z :w <bar> call firenvim#focus_page() <bar> q <cr>
+    nnoremap <leader><leader>z :w <bar> call firenvim#press_keys("<LT>CR>") <bar> q <cr>
     nnoremap <leader>q :call firenvim#focus_page() <bar> q! <cr>
   else
-    nnoremap <leader>z :wq<cr>
-    nnoremap <leader>q :q!<cr>
+    nnoremap <leader>z :w <bar> BufferDeleteOrQuit<cr>
+    nnoremap <leader>Q :q!<cr>
+    nnoremap <leader>q :BufferDeleteOrQuit<cr>
   endif
 
   " Buffer delete
@@ -97,13 +100,3 @@ nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
-
-" VSCode mappings
-if exists('g:vscode')
-  nnoremap <leader>w <Cmd>Write<cr>
-  nnoremap <leader>z <Cmd>Wq<cr>
-  nnoremap <leader>q <Cmd>Quit!<cr>
-  nnoremap gx <Cmd>Quit!<cr>
-  nnoremap <leader>p <Cmd>Edit<cr>
-  nnoremap <leader><leader>P <Cmd>Showcommands<cr>
-endif

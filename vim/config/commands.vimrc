@@ -28,9 +28,13 @@ command! TC silent write | let @+ = system("pandoc -t html " . shellescape(expan
 " Convert to branch name
 command! BN silent %s/.*/\L&/g | %s/\s/-/g | %s/[-]*$//g | yank
 
-" VSCode commands
-if exists('g:vscode')
-  command! -bang Showcommands call VSCodeNotify('workbench.action.showCommands')
+function! BufferDeleteOrQuit()
+  let bufferCount = len(getbufinfo({'buflisted':1}))
+  if bufferCount > 1
+    bdelete
+  else
+    quit!
+  endif
+endfunction
 
-  AlterCommand sc Showcommands
-endif
+command! BufferDeleteOrQuit call BufferDeleteOrQuit()

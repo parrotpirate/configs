@@ -35,3 +35,8 @@ if has ('nvim')
   source $HOME/.vim/config/multi_cursor.vimrc
   source $HOME/.vim/config/ultisnips.vimrc
 endif
+
+" VSCODE NEOVIM INTEGRATION
+if exists('g:vscode')
+  source $HOME/.vim/config/vscode_neovim.vimrc
+endif
