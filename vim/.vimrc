@@ -24,6 +24,7 @@ source $HOME/.vim/config/ctrlp.vimrc
 source $HOME/.vim/config/tabular.vimrc
 source $HOME/.vim/config/incsearch.vimrc
 source $HOME/.vim/config/vim_slash.vimrc
+source $HOME/.vim/config/vim_commentary.vimrc
 if !exists('g:vscode')
   source $HOME/.vim/config/indent_guides.vimrc
   source $HOME/.vim/config/supertab.vimrc

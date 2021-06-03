@@ -29,8 +29,10 @@ call plug#begin('/Users/stevep/.vim' . '/plugged')
   Plug 'tpope/vim-repeat'
   Plug 'triglav/vim-visual-increment'
   Plug 'junegunn/vim-slash'
+  Plug 'terryma/vim-multiple-cursors'
   " Plug 'scrooloose/nerdcommenter'
   " Plug 'tomtom/tcomment_vim'
+  Plug 'tpope/vim-commentary'
   Plug 'reedes/vim-lexical'
   Plug 'inkarkat/vim-ingo-library'
   Plug 'inkarkat/vim-visualrepeat'
@@ -61,8 +63,6 @@ call plug#begin('/Users/stevep/.vim' . '/plugged')
 if !exists('g:vscode')
   Plug 'airblade/vim-gitgutter'
   Plug 'nathanaelkane/vim-indent-guides'
-  Plug 'terryma/vim-multiple-cursors'
-  Plug 'tpope/vim-commentary'
   " Plug 'easymotion/vim-easymotion'
 endif
 
