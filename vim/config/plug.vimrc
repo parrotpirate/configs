@@ -28,6 +28,7 @@ call plug#begin('/Users/stevep/.vim' . '/plugged')
   Plug 'svermeulen/vim-cutlass'
   Plug 'tpope/vim-repeat'
   Plug 'triglav/vim-visual-increment'
+  Plug 'junegunn/vim-slash'
   " Plug 'scrooloose/nerdcommenter'
   " Plug 'tomtom/tcomment_vim'
   Plug 'reedes/vim-lexical'
