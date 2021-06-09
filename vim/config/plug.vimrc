@@ -32,7 +32,6 @@ call plug#begin('/Users/stevep/.vim' . '/plugged')
   Plug 'terryma/vim-multiple-cursors'
   " Plug 'scrooloose/nerdcommenter'
   " Plug 'tomtom/tcomment_vim'
-  Plug 'tpope/vim-commentary'
   Plug 'reedes/vim-lexical'
   Plug 'inkarkat/vim-ingo-library'
   Plug 'inkarkat/vim-visualrepeat'
@@ -61,6 +60,7 @@ call plug#begin('/Users/stevep/.vim' . '/plugged')
 
   " Don't use these with VSCode
 if !exists('g:vscode')
+  Plug 'tpope/vim-commentary'
   Plug 'airblade/vim-gitgutter'
   Plug 'nathanaelkane/vim-indent-guides'
   " Plug 'easymotion/vim-easymotion'
