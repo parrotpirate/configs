@@ -119,8 +119,21 @@
     open http://localhost:9090/
     ;;
 
+  dev)
+    cd $LOCALDEV || exit
+    docker compose up -d
+    open http://localhost:9090/
+    if [[ -f "$LOCALDEV"/.env ]]; then
+      source $ENV
+      cd "$WEB_ROOT" || exit
+      $SHELL
+    else
+      print "No local site currently active."
+    fi
+    ;;
+
   help)
-    printf "Available Commands:\n---\ncreate\nnew\n---\nup\nstart\nresume\n---\npause\nstop\n---\ndown\nremove\ndelete\nkill\n---\nswitch\nswap\n---\ncurrent\n---\nsetup\n---\nbrowse\ncd\n---\nopen\n"
+    printf "Available Commands:\n---\ncreate\nnew\n---\nup\nstart\nresume\n---\npause\nstop\n---\ndown\nremove\ndelete\nkill\n---\nswitch\nswap\n---\ncurrent\n---\nsetup\n---\nbrowse\ncd\n---\nopen\n--\ndev\n"
     ;;
 
   esac
