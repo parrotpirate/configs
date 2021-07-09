@@ -80,7 +80,8 @@ bind i hint -Jc input[type="text"], textarea
 bind I composite hint -Jc input[type="text"], textarea | editor
 bind yi composite hint -J-pipe input,textarea value | yank
 bind ya hint -y
-bind ma hint -qy
+bind ma hint -qW yank
+bind mA hint -qy
 bind yt hint -p
 bind mt hint -qp
 bind b fillcmdline bmarks
