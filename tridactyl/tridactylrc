@@ -3,7 +3,6 @@ sanitise tridactyllocal tridactylsync
 "---
 
 "CONFIG SETTINGS
-
 "---
 
 colourscheme quake
@@ -120,9 +119,12 @@ bind --mode=input       <C-u>   text.backward_kill_line
 " bind --mode=input       <C-w>   text.backward_kill_word
 
 " JIRA SPECIFIC CONFIG
-unbindurl q4launch.atlassian.net --mode=normal i
-unbindurl q4launch.atlassian.net --mode=normal /
-unbindurl q4launch.atlassian.net --mode=normal .
+" unbindurl q4launch.atlassian.net --mode=normal i
+" unbindurl q4launch.atlassian.net --mode=normal /
+" unbindurl q4launch.atlassian.net --mode=normal .
+seturl q4launch.atlassian.net\/.* allowautofocus true
+unbindurl q4launch.atlassian.net\/.* --mode=normal ,j
+bindurl q4launch.atlassian.net\/.* --mode=normal ,j hint -c [class*="cspqsP"]
 
 " command scrollDown js function n(){function r(n){if(n==null){return null}if(n.scrollHeight>n.clientHeight){return n}else{return r(n.parentNode)}}var n=document.activeElement;var u=r(n);u.scrollTop+=100}n();
 command scrollUp js function n(){function r(n){if(n==null){return null}if(n.scrollHeight>n.clientHeight){return n}else{return r(n.parentNode)}}var n=document.activeElement;var u=r(n);u.scrollTop=0}n();
