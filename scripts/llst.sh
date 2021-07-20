@@ -90,7 +90,7 @@
       FOLDER=s/MONIKER=.*/MONIKER=${PWD##*/}/
       DIR=s%WEB_ROOT=.*%WEB_ROOT=${PWD}%
       cp $LOCALDEV/wordpress/wp-config.php .
-      mv /Users/stevep/Downloads/seed.sql .
+      # mv /Users/stevep/Downloads/seed.sql .
       (
         cd $LOCALDEV || exit
         if [[ -f .env ]]; then
