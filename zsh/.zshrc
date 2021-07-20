@@ -391,6 +391,8 @@ alias imgopt="imageoptim ./*"
 alias llst="~/llst.sh"
 alias localdev="cd ~/localdev"
 
+alias kraken='open -na "GitKraken" --args -p $(pwd)'
+
 #FUCK
 eval "$(thefuck --alias)"
 
