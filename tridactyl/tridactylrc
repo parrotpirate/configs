@@ -145,3 +145,4 @@ bind ,s composite getScrollableCustom; hintScrollableCustom
 
 " EXPERIMENTAL
 set hintautoselect true
+set tabclosepinned false

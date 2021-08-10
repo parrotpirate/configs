@@ -176,10 +176,6 @@ source $ZSH/oh-my-zsh.sh
 alias ls="colorls --group-directories-first"
 alias lsa="colorls -A --group-directories-first"
 
-# Jump back to beginning of directory stack
-alias rewind="pushd +0 && dirs -c"
-# View directory stack
-alias dsl="dirs -v"
 # CLEAR DIRECTORY STACK
 alias dsc="dirs -c"
 
@@ -511,3 +507,6 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+function dsl {
+  dirs -v && read "directory?Jump to: " && pushd -${directory} > /dev/null;
+}
