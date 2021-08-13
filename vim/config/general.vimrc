@@ -11,6 +11,7 @@ set softtabstop=2
 set number
 set clipboard=unnamed
 set mouse=
+set smartcase
 
 if !exists('g:vscode')
   if (has("termguicolors"))
