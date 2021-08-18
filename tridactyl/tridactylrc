@@ -131,6 +131,9 @@ bindurl q4launch.atlassian.net\/.* --mode=normal ,j hint -c [class*="cspqsP"]
 unbindurl q4launch.atlassian.net\/.* --mode=normal ,a
 bindurl q4launch.atlassian.net\/.* --mode=normal ,a hint -c [data-testid="media-card-view"]
 
+" TRELLO CONFIG
+seturl trello.com\/b\/.* allowautofocus true
+
 " command scrollDown js function n(){function r(n){if(n==null){return null}if(n.scrollHeight>n.clientHeight){return n}else{return r(n.parentNode)}}var n=document.activeElement;var u=r(n);u.scrollTop+=100}n();
 command scrollUp js function n(){function r(n){if(n==null){return null}if(n.scrollHeight>n.clientHeight){return n}else{return r(n.parentNode)}}var n=document.activeElement;var u=r(n);u.scrollTop=0}n();
 " command scrollUp js function n(){function r(n){if(n==null){return null}if(n.scrollHeight>n.clientHeight){return n}else{return r(n.parentNode)}}var n=document.activeElement;var u=r(n);u.scrollTop-=100}n();
