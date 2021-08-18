@@ -74,7 +74,7 @@ source  ~/powerlevel9k/powerlevel9k.zsh-theme
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=1
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -116,29 +116,30 @@ plugins=(
   autojump
   autoupdate
   brew
-  command-not-found
-  compleat
+  colored-man-pages
+  # command-not-found
+  # compleat
   composer
   copyfile
+  dirhistory
   docker
+  docker-compose
   git-auto-fetch
-  git-extras
-  git-flow
+  # git-extras
+  # git-flow
+  git-prompt
   git-prune
-  # hacker-quotes
+  history
   npm
   osx
   rsync
   sudo
   symfony-console
-  # taskwarrior
-  # timewarrior
   vi-mode
   vscode
   wp-cli
   yarn
   zsh_reload
-  # zsh-apple-touchbar
   zsh-autopair
   zsh-autosuggestions
 )
