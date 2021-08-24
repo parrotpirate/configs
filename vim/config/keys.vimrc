@@ -2,13 +2,13 @@
 " KEY BINDINGS
 
 " INSERT MODE MAPPINGS
-inoremap jj <esc>
+inoremap <nowait> jj <esc>
 " inoremap kj <esc>
 " inoremap jk <esc>
 
 if exists('g:started_by_firenvim')
   inoremap <leader>z <c-o>:w <bar> call firenvim#focus_page() <bar> q <cr>
-  inoremap <leader><leader>z <c-o>:w <bar> call firenvim#press_keys("<LT>CR>") <bar> q <cr>
+  inoremap <leader><cr> <c-o>:w <bar> call firenvim#press_keys("<LT>CR>") <bar> q <cr>
   inoremap <leader>q <c-o>:call firenvim#focus_page() <bar> q! <cr>
 else
   inoremap <leader>z <ESC>:update <bar> BufferDeleteOrQuit<cr>
@@ -45,7 +45,7 @@ if !exists('g:vscode')
 
   if exists('g:started_by_firenvim')
     nnoremap <leader>z :w <bar> call firenvim#focus_page() <bar> q <cr>
-    nnoremap <leader><leader>z :w <bar> call firenvim#press_keys("<LT>CR>") <bar> q <cr>
+    nnoremap <leader><cr> :w <bar> call firenvim#press_keys("<LT>CR>") <bar> q <cr>
     nnoremap <leader>q :call firenvim#focus_page() <bar> q! <cr>
   else
     nnoremap <leader>z :w <bar> BufferDeleteOrQuit<cr>
