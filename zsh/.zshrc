@@ -352,6 +352,7 @@ alias zshconfig="nvim /Users/stevep/.zshrc"
 alias vimconfig="nvim ~/.vimrc"
 alias vimplugconfig="nvim ~/.vimpluglist"
 alias nvimconfig="nvim ~/.config/nvim/init.vim"
+alias sshconfig="nvim ~/.ssh/config"
 alias vimsnippets="cd ~/.config/nvim/mysnippets/"
 alias vimupdate="nvim -c 'PlugUpgrade | PlugUpdate'"
 
