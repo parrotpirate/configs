@@ -8,7 +8,7 @@ inoremap <nowait> jj <esc>
 
 if exists('g:started_by_firenvim')
   inoremap <leader>z <c-o>:w <bar> call firenvim#focus_page() <bar> q <cr>
-  inoremap <leader><cr> <c-o>:w <bar> call firenvim#press_keys("<LT>CR>") <bar> q <cr>
+  inoremap <leader><cr> <c-o>:w <bar> call firenvim#press_keys("<LT>CR>") <bar> call firenvim#focus_page() <bar> q <cr>
   inoremap <leader>q <c-o>:call firenvim#focus_page() <bar> q! <cr>
 else
   inoremap <leader>z <ESC>:update <bar> BufferDeleteOrQuit<cr>
