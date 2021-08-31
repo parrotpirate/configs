@@ -44,6 +44,7 @@ bind <Esc> nohlsearch
 command hint_focus hint -;
 command workcontainer tabopen -c Work
 command personalcontainer tabopen -c Personal
+command src source
 " Open right click menu on links
 "bind ;c composite hint_focus; !s xdotool key Menu
 " bind ,c hint -Jc input[type="checkbox"]
