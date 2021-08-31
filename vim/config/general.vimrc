@@ -18,6 +18,7 @@ if !exists('g:vscode')
    set termguicolors
   endif
   syntax enable
+  syntax on
 endif
 
 let mapleader = ","

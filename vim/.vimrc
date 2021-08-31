@@ -28,6 +28,7 @@ source $HOME/.vim/config/vim_commentary.vimrc
 if !exists('g:vscode')
   source $HOME/.vim/config/indent_guides.vimrc
   source $HOME/.vim/config/supertab.vimrc
+  source $HOME/.vim/config/todo.vimrc
 endif
 
 " NEOVIM PLUGIN CONFIG/MAPPING

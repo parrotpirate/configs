@@ -63,6 +63,7 @@ if !exists('g:vscode')
   Plug 'tpope/vim-commentary'
   Plug 'airblade/vim-gitgutter'
   Plug 'nathanaelkane/vim-indent-guides'
+  Plug 'freitass/todo.txt-vim'
   " Plug 'easymotion/vim-easymotion'
 endif
 

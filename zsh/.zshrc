@@ -5,6 +5,7 @@ export PATH="$PATH:$HOME/.composer/vendor/bin"
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 export PATH="/Users/stevep/Library/Python/3.7/bin:$PATH"
+export PATH="/usr/local/Cellar/todo-txt/*/bin:$PATH"
 
 #NVM setup
 export NVM_DIR=~/.nvm
@@ -74,6 +75,7 @@ source  ~/powerlevel9k/powerlevel9k.zsh-theme
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
+DISABLE_UPDATE_PROMPT="true"
 export UPDATE_ZSH_DAYS=1
 
 # Uncomment the following line to disable colors in ls.
@@ -118,7 +120,7 @@ plugins=(
   brew
   colored-man-pages
   # command-not-found
-  # compleat
+  compleat
   composer
   copyfile
   dirhistory
@@ -142,6 +144,7 @@ plugins=(
   zsh_reload
   zsh-autopair
   zsh-autosuggestions
+  zsh-completions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -371,7 +374,7 @@ alias dockerclean="docker container prune -f && docker image prune -af"
 
 # Docker aliases
 alias dc="docker compose"
-alias dce="docker compose exec php bash"
+alias dce="(cd ~/localdev > /dev/null; docker compose exec php bash)"
 alias dcu="docker compose up -d"
 alias dcb="docker compose up --build --remove-orphans -d"
 alias dcd="docker compose down -v"
@@ -390,6 +393,9 @@ alias llst="~/llst.sh"
 alias localdev="cd ~/localdev"
 
 alias kraken='open -na "GitKraken" --args -p $(pwd)'
+# alias t='todo.sh -c -d ~/configs/todo/.todo.cfg'
+alias t='todo.sh'
+alias tdl='nvim ~/configs/todo/tdlist/todo.txt'
 
 #FUCK
 eval "$(thefuck --alias)"
