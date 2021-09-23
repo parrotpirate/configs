@@ -17,6 +17,7 @@ source $HOME/.vim/config/vim_yoink.vimrc
 source $HOME/.vim/config/vim_cutlass.vimrc
 source $HOME/.vim/config/vim_subversive.vimrc
 source $HOME/.vim/config/lexical.vimrc
+source $HOME/.vim/config/markdownpreview.vimrc
 source $HOME/.vim/config/multi_cursor.vimrc
 source $HOME/.vim/config/nerdtree.vimrc
 source $HOME/.vim/config/syntastic.vimrc
@@ -25,6 +26,8 @@ source $HOME/.vim/config/tabular.vimrc
 source $HOME/.vim/config/incsearch.vimrc
 source $HOME/.vim/config/vim_slash.vimrc
 source $HOME/.vim/config/vim_commentary.vimrc
+source $HOME/.vim/config/vim_checkbox.vimrc
+
 if !exists('g:vscode')
   source $HOME/.vim/config/indent_guides.vimrc
   source $HOME/.vim/config/supertab.vimrc

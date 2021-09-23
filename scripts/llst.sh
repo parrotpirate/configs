@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 {
   LOCALDEV="/Users/stevep/localdev"
+  LOCALSITES="/Users/stevep/Sites"
   readonly ENV="$LOCALDEV/.env"
 
   case $1 in
@@ -8,7 +9,7 @@
   create | new)
     (
       cd $LOCALDEV || exit
-      docker compose up --build -d
+      docker compose up -d
       sleep 1
       docker compose exec php bash q4-init.sh
       sleep 1
@@ -32,21 +33,52 @@
     )
     ;;
 
-  down | remove | delete | kill)
+  down | remove | delete | kill | rm)
     (
-      cd $LOCALDEV || exit
-      docker compose up -d
-      sleep 1
-      docker compose exec php wp db export seed.sql --allow-root
-      sleep 1
-      docker compose down
+      # cd $LOCALDEV || exit
+      # docker compose up -d
+      # sleep 1
+      # docker compose exec php wp db export seed.sql --allow-root
+      # sleep 1
+      # docker compose down
+      if [ -z "$2" ]; then
+        echo Site moniker:
+        read KILLMONIKER
+      else
+        KILLMONIKER="$2"
+      fi
+      (
+        cd $LOCALDEV || exit
+        if [[ -f ."$KILLMONIKER" ]]; then
+          rm -rf ."$KILLMONIKER"
+        elif [[ -f .env ]]; then
+          source .env
+          if [ "$MONIKER" == "$KILLMONIKER" ]; then
+            rm -rf .env
+          else
+            echo "No relevent env file found."
+          fi
+        else
+          echo "No relevent env file found."
+        fi
+      )
+      (
+        cd $LOCALSITES || exit
+        if [ -d "$KILLMONIKER" ]; then
+          rm -rf "$KILLMONIKER"
+        fi
+      )
     )
     ;;
 
   switch | swap)
     # read "NEWMONIKER?New moniker: "
-    echo New moniker:
-    read NEWMONIKER
+    if [ -z "$2" ]; then
+      echo New moniker:
+      read NEWMONIKER
+    else
+      NEWMONIKER="$2"
+    fi
     (
       cd $LOCALDEV || exit
       docker compose stop
@@ -62,8 +94,14 @@
           nvim .env
         fi
       else
-        cp .env.example .env
-        nvim .env
+        if [[ -f ."$NEWMONIKER" ]]; then
+          mv ."$NEWMONIKER" .env
+          docker compose up -d
+          open http://localhost:9090/
+        else
+          cp .env.example .env
+          nvim .env
+        fi
       fi
     )
     ;;

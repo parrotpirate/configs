@@ -1,10 +1,6 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
 # If you come from bash you might have to change your $PATH.
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
@@ -29,41 +25,40 @@ export ZSH="/Users/stevep/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="robbyrussell"
 
 if [ -f /Users/stevep/.ghtoken ]; then
   source /Users/stevep/.ghtoken
 fi
 
 # Customise the Powerlevel9k prompts
-# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=' '
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=' '
 # POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=$'\uE0B1 '
-# POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{014}\u2570%F{cyan}\uF460%F{073}\uF460%F{109}\uF460%f "
-# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode context ssh dir vcs)
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator ram load background_jobs)
-# POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\uE0C6'
-# POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=$'\uE0C4'
-# POWERLEVEL9K_LEFT_SEGMENT_END_SEPARATOR=''
-# POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$'\uE0C7'
-# POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=$'\uE0C5'
-# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-# POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{014}\u2570%F{cyan}\uF460%F{073}\uF460%F{109}\uF460%f "
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode context ssh dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator ram load background_jobs)
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\uE0C6'
+POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=$'\uE0C4'
+POWERLEVEL9K_LEFT_SEGMENT_END_SEPARATOR=''
+POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$'\uE0C7'
+POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=$'\uE0C5'
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 DEFAULT_USER='stevep'
-# POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='160'
-# POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='148'
-# POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='090'
-# POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='040'
-# VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
-# POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
-# POWERLEVEL9K_VI_COMMAND_MODE_STRING='COMMAND'
-# P9K_VI_MODE_VISUAL_STRING='VISUAL'
-# P9K_VI_MODE_SEARCH_STRING='SEARCH'
+POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='160'
+POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='148'
+POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='090'
+POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='040'
+VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
+POWERLEVEL9K_VI_COMMAND_MODE_STRING='COMMAND'
+P9K_VI_MODE_VISUAL_STRING='VISUAL'
+P9K_VI_MODE_SEARCH_STRING='SEARCH'
 
-# # Load Nerd Fonts with Powerlevel9k theme for Zsh
-# POWERLEVEL9K_MODE='nerdfont-complete'
+# Load Nerd Fonts with Powerlevel9k theme for Zsh
+POWERLEVEL9K_MODE='nerdfont-complete'
 
-# source  ~/powerlevel9k/powerlevel9k.zsh-theme
+source  ~/powerlevel9k/powerlevel9k.zsh-theme
 
 
 # Set list of themes to pick from when loading at random
@@ -165,13 +160,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='/usr/local/bin/nvim'
-else
-  export EDITOR='/usr/local/bin/nvim'
-fi
-
-export VISUAL='/usr/local/bin/nvim'
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -321,25 +314,6 @@ function ggpublish() {
 }
 compdef _git ggpublish=git-checkout
 
-# Open the Pull Request URL for your current directory's branch (base branch defaults to main)
-function openpr() {
-  github_url=`git remote -v | awk '/fetch/{print $2}' | sed -Ee 's#(git@|git://)#https://#' -e 's@com:@com/@' -e 's%\.git$%%' | awk '/github/'`;
-  branch_name=`git symbolic-ref HEAD | cut -d"/" -f 3,4`;
-  pr_url=$github_url"/compare/main..."$branch_name
-  open $pr_url;
-}
-
-# Run git push and then immediately open the Pull Request URL
-function gpr() {
-  git push origin HEAD
-
-  if [ $? -eq 0 ]; then
-    openpr
-  else
-    echo 'failed to push commits and open a pull request.';
-  fi
-}
-
 #Git reset
 alias grh='git reset --hard && git clean -fd'
 #Git status
@@ -422,12 +396,9 @@ alias llst="~/llst.sh"
 alias localdev="cd ~/localdev"
 
 alias kraken='open -na "GitKraken" --args -p $(pwd)'
+# alias t='todo.sh -c -d ~/configs/todo/.todo.cfg'
 alias t='todo.sh'
-alias tl='todo.sh ls @work'
-alias tdl='todo.sh edit'
-
-# Notes and Lists
-alias btsu='nvim -c "MarkdownPreview" $HOME/Documents/bluetentStandUp.md'
+alias tdl='nvim ~/configs/todo/tdlist/todo.txt'
 
 #FUCK
 eval "$(thefuck --alias)"
@@ -550,6 +521,3 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 function dsl {
   dirs -v && read "directory?Jump to: " && pushd -${directory} > /dev/null;
 }
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

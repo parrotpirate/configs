@@ -97,6 +97,10 @@ bind --mode=visual V mode normal
 bind --mode=visual y composite js document.getSelection().toString() | yank; js document.getSelection().empty(); mode normal; hidecmdline
 bind --mode=normal <C-v> mode ignore
 bind --mode=ignore <C-v> mode normal
+bind --mode=visual <C-c> <Esc>
+bind --mode=hint <C-c> <Esc>
+bind --mode=insert <C-c> escapehatch
+bind --mode=insert <C-]> escapehatch
 
 bind x tabclose
 bind X undo tab
@@ -131,6 +135,10 @@ unbindurl q4launch.atlassian.net\/.* --mode=normal ,j
 bindurl q4launch.atlassian.net\/.* --mode=normal ,j hint -c [class*="cspqsP"]
 unbindurl q4launch.atlassian.net\/.* --mode=normal ,a
 bindurl q4launch.atlassian.net\/.* --mode=normal ,a hint -c [data-testid="media-card-view"]
+bindurl q4launch.atlassian.net\/.* --mode=normal yr js navigator.clipboard.writeText(document.querySelectorAll("[data-test-id='issue.views.issue-base.foundation.breadcrumbs.breadcrumb-current-issue-container'] li span")[0].textContent);
+
+" GITHUB SPECIFIC CONFIG
+bindurl github.com\/PropertyBrands\/.* --mode=normal yr js navigator.clipboard.writeText(document.querySelectorAll("#repository-container-header strong[itemprop='name'] a")[0].textContent);
 
 " TRELLO CONFIG
 seturl trello.com\/b\/.* allowautofocus true
@@ -150,3 +158,5 @@ bind ,s composite getScrollableCustom; hintScrollableCustom
 " EXPERIMENTAL
 set hintautoselect true
 set tabclosepinned false
+guiset_quiet tabs always
+guiset_quiet navbar always

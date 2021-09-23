@@ -2,3 +2,8 @@ snippet src "Source .vimrc partial"
 source \$HOME/.vim/config/$0
 endsnippet
 
+snippet fun "Function call"
+function! ${1:Function Name}()
+	$0
+endfunction
+endsnippet

@@ -1,18 +1,15 @@
-x 2021-09-01 ashbrooke.q4-demo.com reservation search not working @work
-(B) Bookbeach.com inconsitancy between search page and property page review count +VR @work
+(A) Check with BT on ecommerce tracking +VR @work due:2021-09-09
+(A) Export https://oceanviewlodging.com/ site files @work due:2021-09-09
+(A) get david to review piotr pull request on old vr @work +VR
+(A) remove ashbrooke dev site @work +serverManagement due:2021-09-09
+(A) remove swanendele dev site @work +serverManagement due:2021-09-09
 (B) setup q4fw-theme laravel mix image processing @work +Q4FW
 (C) Check Chris's KB article https://kb.q4launch.com/q4-front-end-dev-onboarding/ @work
 (C) Look into courtney vr edits https://docs.google.com/document/d/1JRvcdwkE8OWxYTF-9x1QiNIlcZcgqsxww7vibMRpMtM/edit\?usp\=sharing @work +VR
 (C) break out q4fw-theme js into export statements @work +Q4FW
 (C) convert flexgrid css into proper scss @work +Q4FW
+Bookbeach.com inconsitancy between search page and property page review count +VR @work
 Move Q4FW to GitHub +Q4FW @work
-fully setup todo.txt @personal
 move vim filetype plugins to config folder @personal
-(A) review software list from Scott @work +email
-(C) review onboarding checklist from Kelly @work +email
-(A) osthoff jira tickets @work +jira
 search for todo action to bump all priorities up by 1 @personal
-(A) check piotr branches @work
-(A) submit gh secrets to bt to pass to inhabit @work +VR
-(A) get david to review piotr pull request on old vr @work +VR
-(A) piotr investigate q4launchbooking/sps issue @work +jira
+test

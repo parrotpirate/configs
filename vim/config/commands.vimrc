@@ -38,3 +38,47 @@ function! BufferDeleteOrQuit()
 endfunction
 
 command! BufferDeleteOrQuit call BufferDeleteOrQuit()
+
+" function! SyntasticToggle()
+"   let g:syntastic_is_open = 0  
+"   if g:syntastic_is_open == 1
+"       lclose
+"       let g:syntastic_is_open = 0 
+"   else
+"       Errors
+"       let g:syntastic_is_open = 1 
+"   endif
+" endfunction
+
+function! SyntasticToggle()
+  let g:wi = getloclist(2, {'winid' : 1})
+  if g:wi != {}
+    lclose
+  else
+    SyntasticCheck
+  endif
+endfunction
+
+function! SyntasticNext()
+  let g:wi = getloclist(2, {'winid' : 1})
+  if g:wi != {}
+    lnext
+  endif
+endfunction
+
+function! SyntasticPrev()
+  let g:wi = getloclist(2, {'winid' : 1})
+  if g:wi != {}
+    lprevious
+  endif
+endfunction
+
+command! ST call SyntasticToggle()
+command! SN call SyntasticNext()
+command! SP call SyntasticPrev()
+
+" SET FILETYPE
+if exists('g:started_by_firenvim')
+  command! Shtml set filetype=html
+  command! Smd set filetype=markdown
+endif

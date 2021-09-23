@@ -5,6 +5,6 @@ let g:lexical#spell_key = '<leader>sl'
 " LEXICAL MAPPINGS
 nnoremap <leader>sc :SpellCheck<cr>
 nnoremap <leader>sf z=
-nnoremap <leader>sn ]s
+nmap <leader>sn ]s
 nnoremap <leader>sb [s
 nnoremap <leader>sr :spellr<CR>

@@ -11,7 +11,8 @@ if exists('g:started_by_firenvim')
   inoremap <leader><cr> <c-o>:w <bar> call firenvim#press_keys("<LT>CR>") <bar> call firenvim#focus_page() <bar> q <cr>
   inoremap <leader>q <c-o>:call firenvim#focus_page() <bar> q! <cr>
 else
-  inoremap <leader>z <ESC>:update <bar> BufferDeleteOrQuit<cr>
+  " inoremap <leader>z <ESC>:update <bar> BufferDeleteOrQuit<cr>
+  inoremap <leader>z <c-o>:wq<cr>
   inoremap <leader>Q <c-o>:q!<cr>
   inoremap <leader>q <ESC>:BufferDeleteOrQuit<cr>
 endif
@@ -47,8 +48,11 @@ if !exists('g:vscode')
     nnoremap <leader>z :w <bar> call firenvim#focus_page() <bar> q <cr>
     nnoremap <leader><cr> :w <bar> call firenvim#press_keys("<LT>CR>") <bar> q <cr>
     nnoremap <leader>q :call firenvim#focus_page() <bar> q! <cr>
+    nnoremap <leader>sh :Shtml<cr>
+    nnoremap <leader>sm :Smd<cr>
   else
-    nnoremap <leader>z :w <bar> BufferDeleteOrQuit<cr>
+    " nnoremap <leader>z :w <bar> BufferDeleteOrQuit<cr>
+    nnoremap <leader>z :wq<cr>
     nnoremap <leader>Q :q!<cr>
     nnoremap <leader>q :BufferDeleteOrQuit<cr>
   endif
@@ -86,6 +90,12 @@ nnoremap <leader><leader>, A,<esc>
 nnoremap <leader><leader>; A;<esc>
 " Clear search highlight
 nnoremap <c-n> :noh<cr>
+" Toggle location list
+noremap <silent><leader>t :call SyntasticToggle()<CR>
+if get(getloclist(2, {'winid' : 1}), 'winid', 1)
+  nnoremap <silent><leader>ss :call SyntasticNext()<CR>
+  nnoremap <silent><leader>sp :call SyntasticPrev()<CR>
+endif
 
 " turn terminal to normal mode with escape
 tnoremap <Esc> <C-\><C-n>

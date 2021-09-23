@@ -57,6 +57,7 @@ call plug#begin('/Users/stevep/.vim' . '/plugged')
   Plug 'haya14busa/incsearch.vim'
   Plug 'haya14busa/incsearch-fuzzy.vim'
   Plug 'haya14busa/incsearch-easymotion.vim'
+  Plug 'jkramer/vim-checkbox'
 
   " Don't use these with VSCode
 if !exists('g:vscode')
