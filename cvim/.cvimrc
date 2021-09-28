@@ -1,0 +1,461 @@
+" ***Settings***
+let configpath = '/Users/stevep/.config/vb4c/.cvimrc'
+let mapleader = ',' 
+let hintcharacters = "mzxcvuiopqwerlasdf"
+set localconfig
+set scalehints "animate link hints as they appear"
+set linkanimations "show fade effect when link hints open and close"
+set numerichints "use numbers for link hints instead of a set of characters"
+set typelinkhints "(numerichints required) type text in the link to narrow down numeric hints"
+set autofocus! "allows websites to automatically focus an input box when they are first loaded"
+set smoothscroll "use smooth scrolling"
+set autoupdategist "if a GitHub Gist is used to sync settings, pull updates every hour (and when Chrome restarts)"
+set showtabindices "display the tab index in the tab's title"
+set completeonopen "automatically show a list of command completions when the command bar is opened"
+set nativelinkorder
+
+" ***Commands***
+" command bm bookmarks!
+command dt tabdetach
+command at tabattach
+command nf nextFrame
+
+" ***Mappings***
+unmap s w u e W q Q ya t O T B
+map gt goToTab
+map K nextTab
+map J previousTab
+map gS :viewsource!<CR>
+map . nextFrame
+" map F createTabbedHint
+map t createActiveTabbedHint
+map w createHintWindow
+map cr reloadAllTabs
+map <C-r> repeatCommand
+map <C-w> forwardWord
+map <C-b> backwardWord
+map <C-/> openCommandBar
+map e scrollPageUp
+map E scrollFullPageUp
+map D scrollFullPageDown
+map <leader>f createHoverHint
+map <leader>F createUnhoverHint
+map gy ya
+map gR R
+map B :bookmarks!<space>
+map O :open!<space>
+map T :buffer<space>
+map <leader>t :tabnew<CR>
+
+" ***Input Mappings***
+imap <C-l> forwardChar
+imap <C-h> backwardChar
+imap <C-w> forwardWord
+imap <C-b> backwardWord
+" imap <C-;> <C-[>
+" imap <C-;> <esc>
+imap <C-;> :call escapeField<CR>
+
+site '*://projects.zoho.com/*' {
+	unmap ~
+	unmap W
+	unmap O
+	unmap I
+	unmap Q
+	unmap `
+	unmap C
+	unmap X
+	unmap T
+	map A createHintWindow
+}
+
+site 'https://mail.google.com/*' {
+	unmap c
+	unmap u
+	unmap k
+	unmap j
+	unmap x
+	unmap r
+	unmap a
+	unmap #
+	unmap p
+	unmap n
+	unmap R
+	unmap A
+	unmap D
+	unmap T
+	unmap t
+	unmap m
+	unmap M<*>
+	unmap addQuickMark
+	unmap M
+	unmap N
+	unmap {
+	unmap }
+	unmap z
+	unmap .
+	unmap I
+	unmap U
+	unmap E
+	unmap L
+	unmap o
+	unmap +
+	unmap `
+	unmap ~
+}
+
+site '*://keep.google.com/*' {
+	unmap c
+	unmap j
+	unmap k
+	unmap /
+	unmap l
+	unmap p
+	unmap n
+	unmap [
+	unmap ]
+	unmap x
+	unmap #
+	unmap e
+	unmap a
+	unmap ?
+	unmap ?
+	unmap A
+	unmap E
+	unmap #
+	unmap X
+	unmap ]
+	unmap [
+	unmap N
+	unmap P
+	unmap L
+	unmap /
+	unmap K
+	unmap J
+	unmap C
+}
+
+site 'http://host.q4-host.com:2083'{
+	set autofocus
+unmap o
+}
+
+site '*://*/wp-login.php'{
+set autofocus
+}
+
+"Wordpress widget accessiblity toggle"
+wAccessToggle -> {{
+	if (document.body.classList.contains('widgets_access')) {
+	document.getElementById('access-off').click();
+} else {
+	document.getElementById('access-on').click();
+}
+}}
+command waccesstoggle call wAccessToggle
+
+"Wordpress custom fields hover"
+wCFHover -> {{
+	var openMenu = document.getElementsByClassName('opensub');
+	var menu = document.getElementById('toplevel_page_edit-post_type-acf-field-group');
+	if (menu.classList.contains('opensub')) {
+		menu.classList.remove('opensub');
+	}
+	else {
+		while (openMenu[0]) {
+			openMenu[0].classList.remove('opensub');
+		};
+		menu.classList.add('opensub');
+	}
+}}
+command wcustomfields call wCFHover
+
+
+"Wordpress settings hover"
+wSettingsHover -> {{
+	var openMenu = document.getElementsByClassName('opensub');
+	var menu = document.getElementById('menu-settings');
+	if (menu.classList.contains('opensub')) {
+		menu.classList.remove('opensub');
+	}
+	else {
+		while (openMenu[0]) {
+			openMenu[0].classList.remove('opensub');
+		};
+		menu.classList.add('opensub');
+	}
+}}
+command wsettings call wSettingsHover
+
+"Wordpress tools hover"
+wToolsHover -> {{
+	var openMenu = document.getElementsByClassName('opensub');
+	var menu = document.getElementById('menu-tools');
+	if (menu.classList.contains('opensub')) {
+		menu.classList.remove('opensub');
+	}
+	else {
+		while (openMenu[0]) {
+			openMenu[0].classList.remove('opensub');
+		};
+		menu.classList.add('opensub');
+	}
+}}
+command wtools call wToolsHover
+
+"Wordpress users hover"
+wUsersHover -> {{
+	var openMenu = document.getElementsByClassName('opensub');
+	var menu = document.getElementById('menu-users');
+	if (menu.classList.contains('opensub')) {
+		menu.classList.remove('opensub');
+	}
+	else {
+		while (openMenu[0]) {
+			openMenu[0].classList.remove('opensub');
+		};
+		menu.classList.add('opensub');
+	}
+}}
+command wusers call wUsersHover
+
+"Wordpress plugins hover"
+wPluginsHover -> {{
+	var openMenu = document.getElementsByClassName('opensub');
+	var menu = document.getElementById('menu-plugins');
+	if (menu.classList.contains('opensub')) {
+		menu.classList.remove('opensub');
+	}
+	else {
+		while (openMenu[0]) {
+			openMenu[0].classList.remove('opensub');
+		};
+		menu.classList.add('opensub');
+	}
+}}
+command wplugins call wPluginsHover
+
+"Wordpress appearance hover"
+wAppearanceHover -> {{
+	var openMenu = document.getElementsByClassName('opensub');
+	var menu = document.getElementById('menu-appearance');
+	if (menu.classList.contains('opensub')) {
+		menu.classList.remove('opensub');
+	}
+	else {
+		while (openMenu[0]) {
+			openMenu[0].classList.remove('opensub');
+		};
+		menu.classList.add('opensub');
+	}
+}}
+command wappearance call wAppearanceHover
+
+"Wordpress media hover"
+wMediaHover -> {{
+	var openMenu = document.getElementsByClassName('opensub');
+	var menu = document.getElementById('menu-media');
+	if (menu.classList.contains('opensub')) {
+		menu.classList.remove('opensub');
+	}
+	else {
+		while (openMenu[0]) {
+			openMenu[0].classList.remove('opensub');
+		};
+		menu.classList.add('opensub');
+	}
+}}
+command wmedia call wMediaHover
+
+"Wordpress logout"
+wLogout -> {{
+	var logoutButton = document.querySelector('#wp-admin-bar-logout a.ab-item');
+	logoutButton.click();
+}}
+command wlogout call wLogout
+
+"Wordpress Learning Mode"
+wLearningMode -> {{
+	var lmCheckbox = document.querySelector('.waf-learning-mode');
+	lmCheckbox.click();
+}}
+command wlearningmode call wLearningMode
+
+"Wordpress SiteOrigin Image"
+wSiteOriginImage -> {{
+	var siteOriginImageWidget = document.querySelector('div[id*="sow-image-__i__"] .widget-title h3');
+	siteOriginImageWidget.click();
+}}
+command wsoi call wSiteOriginImage
+
+"Zoho start timer"
+zStartTimer -> {{
+		document.querySelector('.entity-section .zoho-timer-list').click();
+}}
+command zstarttimer call zStartTimer
+
+"Zoho In Progress"
+zInProgress -> {{
+		document.querySelector('#searchlist_header div[title="In Progress "], div[title="In progress"]').click();
+}}
+command zinprogress call zInProgress
+
+"Zoho filter list"
+zFilterList -> {{
+	var filterBtn = document.querySelector('div[title="Filters"]');
+
+	function clickFilter(){
+		filterBtn.click();
+		setTimeout(function(){
+			clickCheckbox();
+		}, 1000);
+	};
+
+	function clickCheckbox(){
+		var inProg = document.querySelector('input[value="1074497000001035190"]');
+		var open = document.querySelector('input[value="1074497000000037068"]');
+		inProg.click();
+		open.click();
+		setTimeout(function(){
+			clickFind();
+		}, 1000);
+	};
+
+	function clickFind(){
+		var findBtn = document.getElementById('pfilter');
+		findBtn.click();
+	};
+
+	clickFilter();
+}}
+command zfilterlist call zFilterList
+
+"Zoho update list"
+zUpdateList -> {{
+	var filterBtn = document.querySelector('div[title="Filters"]');
+
+	function clickFilter(){
+		filterBtn.click();
+		setTimeout(function(){
+			clickFind();
+		}, 1000);
+	};
+
+	function clickFind(){
+		var findBtn = document.getElementById('pfilter');
+		findBtn.click();
+	};
+
+	clickFilter();
+}}
+command zupdatelist call zUpdateList
+
+"Zoho change view"
+zChangeView -> {{
+	var plainView = document.getElementById('plainview');
+	var classicView = document.getElementById('classicview');
+
+	if (plainView.classList.contains('viewsel_bdr')) {
+		classicView.click();
+	}
+	else if (classicView.classList.contains('viewsel_bdr')) {
+		plainView.click();
+	}
+}}
+command zviewchange call zChangeView
+
+"Zoho close task"
+zClose -> {{
+	document.querySelector('div[title="Closed"],[searchval="Closed"]').click();
+}}
+command zclose call zClose
+
+"Zoho open task"
+zOpen -> {{
+	document.querySelector('[title="Open"],[title="Reopen"],[searchval="Open"]').click();
+}}
+command zopen call zOpen
+
+"Zoho wait task"
+zWait -> {{
+	document.querySelector('[title="Waiting"],[title="To be tested"],[searchval="Waiting"]').click();
+}}
+command zwait call zWait
+
+"Zoho stop timer"
+" zStopTimer -> {{"
+	" function clickStopTimer(){"
+	" var stopTimerBtn = document.querySelector("[id^='ptimerStop']");"
+  "   if (stopTimerBtn){"
+  "     stopTimerBtn.click();"
+  "     setTimeout(function(){"
+  "     clickUpdateBtn();"
+  "     }, 1000);"
+  "   }"
+	" };"
+
+	" function clickUpdateBtn(){"
+	" 	var updateTimerBtn = document.getElementById('timerlogsubmit');"
+	" 	updateTimerBtn.click();"
+	" };"
+
+	" clickStopTimer();"
+"	document.querySelector("[id^='ptimerStop']").click();"
+"}}"
+"command zstoptimer call zStopTimer"
+
+zStopTimer -> {{
+	document.querySelector("[id^='ptimerStop']").click();
+}}
+command zstoptimer call zStopTimer
+
+"Zoho start work"
+zWorkStart -> {{
+	document.querySelector('#searchlist_header div[title="In Progress "], div[title="In progress"]').click();
+	document.querySelector('.entity-section .zoho-timer-list').click();
+}}
+command zworkstart call zWorkStart
+
+"Grammarly Open"
+grammarlyOpen -> {{
+	document.querySelector("[data-action='editor']").click();
+}}
+command grammarlyopen call grammarlyOpen
+
+"Escape Field"
+escapeField -> {{
+	var focused = document.activeElement;
+	focused.blur();
+}}
+command escapefield call escapeField
+
+"Litespeed Hover"
+litespeedHover -> {{
+	document.querySelector('#wp-toolbar #wp-admin-bar-litespeed-menu .ab-sub-wrapper').style.display = 'block';
+}}
+command litespeedhover call litespeedHover
+
+"Open Preview Color Picker"
+iconPreviewColor -> {{
+	document.querySelector('.sp-replacer.sp-light').click();
+}}
+command opc call iconPreviewColor
+
+" -> {{
+"   const extraFilters = {
+"       '*://*': {
+"           reject: ['a'],
+"           accept: [],
+"       }
+"   };
+
+"   Object.getOwnPropertyNames(extraFilters).forEach(pattern => {
+"       Hints.siteFilters[pattern] = extraFilters[pattern];
+"   });
+" }}
+
+yankText(link) -> {{
+  Status.setMessage(link.text,3);
+  Clipboard.copy(link.text);
+}}
+map yt createScriptHint(yankText)
