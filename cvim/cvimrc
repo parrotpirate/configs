@@ -1,73 +1,78 @@
 " ***Settings***
+set numerichints 
 let configpath = '/Users/stevep/.config/vb4c/.cvimrc'
+let completionengines = ["google", "duckduckgo", "wikipedia", "amazon", "bing"]
+let defaultengine = "bing"
+let fullpagescrollpercent = 99
+" let hintcharacters = "4567891230"
 let mapleader = ',' 
-let hintcharacters = "mzxcvuiopqwerlasdf"
-set localconfig
-set scalehints "animate link hints as they appear"
-set linkanimations "show fade effect when link hints open and close"
-set numerichints "use numbers for link hints instead of a set of characters"
-set typelinkhints "(numerichints required) type text in the link to narrow down numeric hints"
-set autofocus! "allows websites to automatically focus an input box when they are first loaded"
-set smoothscroll "use smooth scrolling"
+let qmark g = ["https://genshin-center.com/", "https://frzyc.github.io/genshin-optimizer/#/", "https://genshin.cc/", "https://paimon.moe/", "https://spiralabyss.org/", "https://genshin.honeyhunterworld.com/?lang=EN", "https://genshinimpactcalculator.com/genshinCalc.html", "https://github.com/biuuu/genshin-wish-export/blob/main/docs/README_EN.md"]
+let typelinkhintsdelay = 100
+set autohidecursor
 set autoupdategist "if a GitHub Gist is used to sync settings, pull updates every hour (and when Chrome restarts)"
-set showtabindices "display the tab index in the tab's title"
 set completeonopen "automatically show a list of command completions when the command bar is opened"
+set linkanimations
+set linkanimations "show fade effect when link hints open and close"
+set localconfig
 set nativelinkorder
+set noautofocus "allows websites to automatically focus an input box when they are first loaded"
+set scalehints "animate link hints as they appear"
+set showtabindices "display the tab index in the tab's title"
+set smoothscroll "use smooth scrolling"
+set sortlinkhints
+set typelinkhints "(numerichints required) type text in the link to narrow down numeric hints"
 
 " ***Commands***
-" command bm bookmarks!
-command dt tabdetach
 command at tabattach
+command dt tabdetach
 command nf nextFrame
 
 " ***Mappings***
-unmap s w u e W q Q ya t O T B
-map gt goToTab
-map K nextTab
-map J previousTab
-map gS :viewsource!<CR>
+" unmap s w u e W q Q ya t O T B gd gD
 map . nextFrame
-" map F createTabbedHint
+map <C-/> openCommandBar
+map <C-b> scrollFullPageUp
+map <C-d> scrollPageDown
+map <C-f> scrollFullPageDown
+map <C-n> clearSearchHighlight
+map <C-r> repeatCommand
+map <C-u> scrollPageUp
+map <leader>F createUnhoverHint
+map <leader>I fullImageHint
+map <leader>T :tabnew<CR>
+map <leader>W :new!<CR>
+map <leader>f createHoverHint
+map <leader>t :buffer<space>
+map <leader>w :new<space>
+map A createBookmark
+map B :bookmarks!<space>
+map F createTabbedHint
+map J previousTab
+map K nextTab
+map O :open!<space>
+map R reloadTabUncached
+map S :tabnew bing<space>
+map ZZ :qall<CR>
+map cr reloadAllTabs
+map gD :tabattach<space>
+map gS :viewsource!<CR>
+map gd :tabdetach<CR>
+map gt goToTab
+map gy ya
+map i createEditHint
+map o :open<space>
+map s :open bing<space>
 map t createActiveTabbedHint
 map w createHintWindow
-map cr reloadAllTabs
-map <C-r> repeatCommand
-map <C-w> forwardWord
-map <C-b> backwardWord
-map <C-/> openCommandBar
-map e scrollPageUp
-map E scrollFullPageUp
-map D scrollFullPageDown
-map <leader>f createHoverHint
-map <leader>F createUnhoverHint
-map gy ya
-map gR R
-map B :bookmarks!<space>
-map O :open!<space>
-map T :buffer<space>
-map <leader>t :tabnew<CR>
+map yA yankWindowUrls
+map ya yankUrl
 
 " ***Input Mappings***
-imap <C-l> forwardChar
-imap <C-h> backwardChar
-imap <C-w> forwardWord
-imap <C-b> backwardWord
-" imap <C-;> <C-[>
-" imap <C-;> <esc>
 imap <C-;> :call escapeField<CR>
-
-site '*://projects.zoho.com/*' {
-	unmap ~
-	unmap W
-	unmap O
-	unmap I
-	unmap Q
-	unmap `
-	unmap C
-	unmap X
-	unmap T
-	map A createHintWindow
-}
+imap <C-b> backwardWord
+imap <C-h> backwardChar
+imap <C-l> forwardChar
+imap <C-w> forwardWord
 
 site 'https://mail.google.com/*' {
 	unmap c
@@ -288,134 +293,6 @@ wSiteOriginImage -> {{
 }}
 command wsoi call wSiteOriginImage
 
-"Zoho start timer"
-zStartTimer -> {{
-		document.querySelector('.entity-section .zoho-timer-list').click();
-}}
-command zstarttimer call zStartTimer
-
-"Zoho In Progress"
-zInProgress -> {{
-		document.querySelector('#searchlist_header div[title="In Progress "], div[title="In progress"]').click();
-}}
-command zinprogress call zInProgress
-
-"Zoho filter list"
-zFilterList -> {{
-	var filterBtn = document.querySelector('div[title="Filters"]');
-
-	function clickFilter(){
-		filterBtn.click();
-		setTimeout(function(){
-			clickCheckbox();
-		}, 1000);
-	};
-
-	function clickCheckbox(){
-		var inProg = document.querySelector('input[value="1074497000001035190"]');
-		var open = document.querySelector('input[value="1074497000000037068"]');
-		inProg.click();
-		open.click();
-		setTimeout(function(){
-			clickFind();
-		}, 1000);
-	};
-
-	function clickFind(){
-		var findBtn = document.getElementById('pfilter');
-		findBtn.click();
-	};
-
-	clickFilter();
-}}
-command zfilterlist call zFilterList
-
-"Zoho update list"
-zUpdateList -> {{
-	var filterBtn = document.querySelector('div[title="Filters"]');
-
-	function clickFilter(){
-		filterBtn.click();
-		setTimeout(function(){
-			clickFind();
-		}, 1000);
-	};
-
-	function clickFind(){
-		var findBtn = document.getElementById('pfilter');
-		findBtn.click();
-	};
-
-	clickFilter();
-}}
-command zupdatelist call zUpdateList
-
-"Zoho change view"
-zChangeView -> {{
-	var plainView = document.getElementById('plainview');
-	var classicView = document.getElementById('classicview');
-
-	if (plainView.classList.contains('viewsel_bdr')) {
-		classicView.click();
-	}
-	else if (classicView.classList.contains('viewsel_bdr')) {
-		plainView.click();
-	}
-}}
-command zviewchange call zChangeView
-
-"Zoho close task"
-zClose -> {{
-	document.querySelector('div[title="Closed"],[searchval="Closed"]').click();
-}}
-command zclose call zClose
-
-"Zoho open task"
-zOpen -> {{
-	document.querySelector('[title="Open"],[title="Reopen"],[searchval="Open"]').click();
-}}
-command zopen call zOpen
-
-"Zoho wait task"
-zWait -> {{
-	document.querySelector('[title="Waiting"],[title="To be tested"],[searchval="Waiting"]').click();
-}}
-command zwait call zWait
-
-"Zoho stop timer"
-" zStopTimer -> {{"
-	" function clickStopTimer(){"
-	" var stopTimerBtn = document.querySelector("[id^='ptimerStop']");"
-  "   if (stopTimerBtn){"
-  "     stopTimerBtn.click();"
-  "     setTimeout(function(){"
-  "     clickUpdateBtn();"
-  "     }, 1000);"
-  "   }"
-	" };"
-
-	" function clickUpdateBtn(){"
-	" 	var updateTimerBtn = document.getElementById('timerlogsubmit');"
-	" 	updateTimerBtn.click();"
-	" };"
-
-	" clickStopTimer();"
-"	document.querySelector("[id^='ptimerStop']").click();"
-"}}"
-"command zstoptimer call zStopTimer"
-
-zStopTimer -> {{
-	document.querySelector("[id^='ptimerStop']").click();
-}}
-command zstoptimer call zStopTimer
-
-"Zoho start work"
-zWorkStart -> {{
-	document.querySelector('#searchlist_header div[title="In Progress "], div[title="In progress"]').click();
-	document.querySelector('.entity-section .zoho-timer-list').click();
-}}
-command zworkstart call zWorkStart
-
 "Grammarly Open"
 grammarlyOpen -> {{
 	document.querySelector("[data-action='editor']").click();
@@ -440,19 +317,6 @@ iconPreviewColor -> {{
 	document.querySelector('.sp-replacer.sp-light').click();
 }}
 command opc call iconPreviewColor
-
-" -> {{
-"   const extraFilters = {
-"       '*://*': {
-"           reject: ['a'],
-"           accept: [],
-"       }
-"   };
-
-"   Object.getOwnPropertyNames(extraFilters).forEach(pattern => {
-"       Hints.siteFilters[pattern] = extraFilters[pattern];
-"   });
-" }}
 
 yankText(link) -> {{
   Status.setMessage(link.text,3);
