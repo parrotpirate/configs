@@ -149,7 +149,6 @@ plugins=(
   vscode
   wp-cli
   yarn
-  zsh_reload
   zsh-autopair
   zsh-autosuggestions
   zsh-completions
@@ -197,6 +196,7 @@ alias dsc="dirs -c"
 alias edithost="sudo nvim /etc/hosts"
 
 # Source Reload
+alias reload="omz reload"
 alias reload.zsh="source ~/.zshrc"
 alias reload.profile="source ~/.bash_profile"
 alias reload.term="source ~/.bash_profile && source ~/.zshrc"
