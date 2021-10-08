@@ -429,6 +429,9 @@ alias tdl='todo.sh edit'
 # Notes and Lists
 alias btsu='nvim -c "MarkdownPreview" $HOME/Documents/bluetentStandUp.md'
 
+alias qsh='ssh -i ~/.ssh/q4_host_root -p 2200 '
+alias cpqsh='pbcopy < ~/.ssh/q4_host_root.pub'
+
 #FUCK
 eval "$(thefuck --alias)"
 
