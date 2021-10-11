@@ -122,7 +122,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bg=#872787,underline"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  # auto-color-ls
+  auto-color-ls
   autojump
   autoupdate
   brew
@@ -555,26 +555,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 function dsl {
   dirs -v && read "directory?Jump to: " && pushd -${directory} > /dev/null;
 }
-
-# vim: sw=2 ts=2 et!
-auto-ls () {
-  if [[ $#BUFFER -eq 0 ]]; then
-    zle && echo ""
-    exa --icons --group-directories-first --color-scale
-    echo ""
-    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == true ]]; then
-      git status
-    fi
-
-    zle && zle redisplay
-  else
-    zle .$WIDGET
-  fi
-}
-
-zle -N auto-ls
-zle -N accept-line auto-ls
-chpwd_functions+=(auto-ls)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
