@@ -32,6 +32,13 @@ if !exists('g:vscode')
   colorscheme dracula
   hi! Normal ctermbg=NONE guibg=NONE
   hi! NonText ctermbg=NONE guibg=NONE
+
+" Enable cursor line position tracking:
+  set cursorline
+" Remove the underline from enabling cursorline:
+  hi! clear CursorLine
+" Set line numbering to red background:
+  hi! CursorLineNR guifg=lime
 endif
 
 " INTEGRATED TERMINAL CONFIG
