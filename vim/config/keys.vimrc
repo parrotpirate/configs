@@ -3,8 +3,8 @@
 
 " INSERT MODE MAPPINGS
 inoremap <nowait> jj <esc>
-" inoremap kj <esc>
-" inoremap jk <esc>
+inoremap <nowait> kj <esc>
+inoremap <nowait> jk <esc>
 
 if exists('g:started_by_firenvim')
   inoremap <leader>z <c-o>:w <bar> call firenvim#focus_page() <bar> q <cr>
