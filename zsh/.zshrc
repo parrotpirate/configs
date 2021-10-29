@@ -429,7 +429,7 @@ alias tl='todo.sh ls @work'
 alias tdl='todo.sh edit'
 
 # Notes and Lists
-alias btsu='nvim -c "MarkdownPreview" $HOME/Documents/bluetentStandUp.md'
+alias btsu='nvim $HOME/Documents/bluetentStandUp.md'
 
 alias qsh='ssh -i ~/.ssh/q4_host_root -p 2200 '
 alias cpqsh='pbcopy < ~/.ssh/q4_host_root.pub'
@@ -542,6 +542,8 @@ q4sh() {
 
 # "jj" to enter vi cmd mode
 bindkey "jj" vi-cmd-mode
+bindkey "jk" vi-cmd-mode
+bindkey "kj" vi-cmd-mode
 
 # Set Python Environment
 if command -v pyenv 1>/dev/null 2>&1; then
