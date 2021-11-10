@@ -20,7 +20,7 @@ command! Stripdomain s#^http[s]\=:\/\/[w]\{,3}[.]\=\([^.]\+\.\l\+\).*#\1# | yank
 command! Stripname s#^http[s]\=:\/\/[w]\{,3}[.]\=\([^.]\+\)\..*#\1# | yank
 
 " Quote each line for Jira response.
-command! JiraResponse %s/^[^\n].*$/> &\r\r+ /g
+command! JiraResponse %s/^\n\=\s*\(.*\)[^\n]$/> \1\r\r+ \r/g | %s#\($\n\s*\)\+\%$## | noh | call cursor(3,2)
 
 " Convert to HTML because Microsoft Teams sucks
 command! TC silent write | let @+ = system("pandoc -t html " . shellescape(expand("%:p")))
