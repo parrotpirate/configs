@@ -140,8 +140,8 @@ plugins=(
   git-prompt
   git-prune
   history
+  macos
   npm
-  osx
   rsync
   sudo
   symfony-console
