@@ -4,6 +4,14 @@
   LOCALSITES="/Users/stevep/Sites"
   readonly ENV="$LOCALDEV/.env"
 
+  if [ -z "$1" ]; then
+    (
+      cd $LOCALDEV/environments || exit
+      ls -A
+    )
+    exit 1
+  fi
+
   case $1 in
 
   create | new)
@@ -49,8 +57,13 @@
       fi
       (
         cd $LOCALDEV || exit
-        if [[ -f ."$KILLMONIKER" ]]; then
-          rm -rf ."$KILLMONIKER"
+        docker compose up -wait &>/dev/null
+        wait
+        docker compose exec db mysql -proot -e "DROP DATABASE $KILLMONIKER;" &>/dev/null
+        wait
+        docker compose stop &>/dev/null
+        if [[ -f environments/."$KILLMONIKER" ]]; then
+          rm -rf environments/."$KILLMONIKER"
         elif [[ -f .env ]]; then
           source .env
           if [ "$MONIKER" == "$KILLMONIKER" ]; then
@@ -84,9 +97,9 @@
       docker compose stop
       if [[ -f .env ]]; then
         source .env
-        mv .env ."$MONIKER"
-        if [[ -f ."$NEWMONIKER" ]]; then
-          mv ."$NEWMONIKER" .env
+        mv .env environments/."$MONIKER"
+        if [[ -f environments/."$NEWMONIKER" ]]; then
+          mv environments/."$NEWMONIKER" .env
           docker compose up -d
           open http://localhost:9090/
         else
@@ -94,8 +107,8 @@
           nvim .env
         fi
       else
-        if [[ -f ."$NEWMONIKER" ]]; then
-          mv ."$NEWMONIKER" .env
+        if [[ -f environments/."$NEWMONIKER" ]]; then
+          mv environments/."$NEWMONIKER" .env
           docker compose up -d
           open http://localhost:9090/
         else
@@ -116,10 +129,10 @@
     )
     ;;
 
-  list)
+  list | ls)
     (
-      cd $LOCALDEV || exit
-      ls -Af \.[^'git'][^'env'][^'dock']*
+      cd $LOCALDEV/environments || exit
+      ls -A
     )
     ;;
 
@@ -127,17 +140,19 @@
     if [[ ! -f wp-config.php ]]; then
       FOLDER=s/MONIKER=.*/MONIKER=${PWD##*/}/
       DIR=s%WEB_ROOT=.*%WEB_ROOT=${PWD}%
+      HOST=s/PRODUCTION_HOST=.*/PRODUCTION_HOST=${PWD##*/}.com/
       cp $LOCALDEV/wordpress/wp-config.php .
       # mv /Users/stevep/Downloads/seed.sql .
       (
         cd $LOCALDEV || exit
         if [[ -f .env ]]; then
           source .env
-          mv .env ."$MONIKER"
+          mv .env environments/."$MONIKER"
         fi
         cp .env.example .env
         sed -i '' "$FOLDER" ./.env
         sed -i '' "$DIR" ./.env
+        sed -i '' "$HOST" ./.env
         nvim .env
       )
     fi
