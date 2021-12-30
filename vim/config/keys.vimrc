@@ -2,7 +2,7 @@
 " KEY BINDINGS
 
 " INSERT MODE MAPPINGS
-inoremap <nowait> jj <esc>
+" inoremap <nowait> jj <esc>
 inoremap <nowait> kj <esc>
 inoremap <nowait> jk <esc>
 
@@ -66,7 +66,7 @@ if !exists('g:vscode')
   nnoremap gT :bprevious<cr>
 endif
 
-nnoremap <leader>ya :%y<cr>
+nnoremap <leader>ya :%y*<cr>
 nnoremap <leader>tc :TC<cr>
 nmap <leader>vr :so $MYVIMRC<cr>
 " Ctrl-j/k deletes blank line below/above, and Alt-j/k inserts.

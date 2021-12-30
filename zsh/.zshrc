@@ -7,6 +7,7 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
@@ -96,7 +97,7 @@ export UPDATE_ZSH_DAYS=1
 ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# COMPLETION_WAITING_DOTS="true"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan,bg=#872787,underline"
 
@@ -145,7 +146,7 @@ plugins=(
   rsync
   sudo
   symfony-console
-  vi-mode
+  # vi-mode
   vscode
   wp-cli
   yarn
@@ -166,12 +167,12 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='/usr/local/bin/nvim'
+  export EDITOR='/usr/local/Cellar/neovim/HEAD-*/bin/nvim'
 else
-  export EDITOR='/usr/local/bin/nvim'
+  export EDITOR='/usr/local/Cellar/neovim/HEAD-*/bin/nvim'
 fi
 
-export VISUAL='/usr/local/bin/nvim'
+export VISUAL='/usr/local/Cellar/neovim/HEAD-*/bin/nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -190,6 +191,9 @@ export VISUAL='/usr/local/bin/nvim'
 alias ls="exa --icons --group-directories-first --color-scale"
 alias lsa="exa --all --icons --group-directories-first --color-scale"
 alias lsl="exa -lbghHmuF --all --icons --group-directories-first --color-scale --git --time-style=long-iso"
+
+alias vi="nvim"
+alias vim="nvim"
 
 # CLEAR DIRECTORY STACK
 alias dsc="dirs -c"
@@ -541,9 +545,9 @@ q4sh() {
 }
 
 # "jj" to enter vi cmd mode
-bindkey "jj" vi-cmd-mode
-bindkey "jk" vi-cmd-mode
-bindkey "kj" vi-cmd-mode
+# bindkey "jj" vi-cmd-mode
+# bindkey "jk" vi-cmd-mode
+# bindkey "kj" vi-cmd-mode
 
 # Set Python Environment
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -558,5 +562,33 @@ function dsl {
   dirs -v && read "directory?Jump to: " && pushd -${directory} > /dev/null;
 }
 
+# ZSH VI MODE
+# Default escape key <ESC> for insert mode
+ZVM_VI_INSERT_ESCAPE_BINDKEY='^['
+ZVM_VI_SURROUND_BINDKEY='s-prefix'
+ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
+ZVM_VISUAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+ZVM_VISUAL_LINE_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_BLINKING_UNDERLINE
+
+# The plugin will auto execute this zvm_after_init function
+function zvm_after_init() {
+  zvm_bindkey viins 'jk' zvm_exit_insert_mode
+  zvm_bindkey viins 'kj' zvm_exit_insert_mode
+}
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Final Plugins
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if type brew &>/dev/null; then
+ FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+ autoload -Uz compinit
+ compinit
+fi
+source $(brew --prefix)/opt/zsh-git-prompt/zshrc.sh
+source $(brew --prefix)/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
