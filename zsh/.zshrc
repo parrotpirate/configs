@@ -428,7 +428,8 @@ alias imgopt="imageoptim ./*"
 alias llst="~/llst.sh"
 alias localdev="cd ~/localdev"
 
-alias kraken='open -na "GitKraken" --args -p $(pwd)'
+alias gk='(eval "gitkraken --new-window -p \"$(git rev-parse --show-toplevel)\" -l /dev/null >/dev/null 2>&1 &")'
+alias kraken='(eval "gitkraken --new-window -p \"$(git rev-parse --show-toplevel)\" -l /dev/null >/dev/null 2>&1 &")'
 alias t='todo.sh'
 alias tl='todo.sh ls @work'
 alias tdl='todo.sh edit'
