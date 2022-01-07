@@ -21,9 +21,11 @@ set allowautofocus false
 set hintfiltermode vimperator-reflow
 set hintdelay 100
 " set hintnames numeric
-" set hintchars 1234567890
-set hintchars 5468791230
 set hintnames uniform
+" set hintnames short
+" set hintchars 5468791230
+set hintchars 5432167890
+" set hintshift true
 set editorcmd /usr/local/Cellar/neovim/*/bin/nvim -f
 
 set modeindicatorshowkeys true
