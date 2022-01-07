@@ -410,6 +410,7 @@ alias dockerclean="docker container prune -f && docker image prune -af"
 # Docker aliases
 alias dc="docker compose"
 alias dce="(cd ~/localdev > /dev/null; docker compose exec php bash)"
+alias dcdb="(cd ~/localdev > /dev/null; docker compose exec php bash updatedb)"
 alias dcu="docker compose up -d"
 alias dcb="docker compose up --build --remove-orphans -d"
 alias dcd="docker compose down -v"
