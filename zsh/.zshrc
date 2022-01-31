@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
@@ -543,6 +543,16 @@ q4sh() {
     ssh -p 2200 "$2"@devhost.q4-dev.com
   else
     ssh -p 2200 "$1"@q4-host.com
+  fi
+}
+
+# CLONE AND CD
+function gcd () {
+  if [ -n "$2" ]; then
+    gh repo clone "$1" "$2" && cd "$PWD"/"$2"
+  else
+    DIR=${1#*/}
+    gh repo clone "$1" "$DIR" && cd "$PWD"/"$DIR"
   fi
 }
 
