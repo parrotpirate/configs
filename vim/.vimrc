@@ -28,6 +28,7 @@ source $HOME/.vim/config/vim_slash.vimrc
 source $HOME/.vim/config/vim_commentary.vimrc
 source $HOME/.vim/config/vim_checkbox.vimrc
 source $HOME/.vim/config/vim_pandoc.vimrc
+source $HOME/.vim/config/table_mode.vimrc
 
 if !exists('g:vscode')
   source $HOME/.vim/config/indent_guides.vimrc
