@@ -3,6 +3,13 @@ if exists('g:started_by_firenvim')
   set laststatus=0
   set guifont=Hack:h16
   au BufEnter q4launch.atlassian.net_*.txt set filetype=markdown
+
+  " KEYBINDINGS
+  tmap <D-v> <C-w>"+
+  nnoremap <D-v> "+p
+  vnoremap <D-v> "+p
+  inoremap <D-v> <C-R><C-O>+
+  cnoremap <D-v> <C-R><C-O>+
 else
   set laststatus=2
 endif
@@ -16,7 +23,7 @@ let g:firenvim_config = {
             \ 'cmdline': 'neovim',
             \ 'priority': 0,
             \ 'selector': 'textarea:not([readonly])',
-            \ 'takeover': 'always',
+            \ 'takeover': 'never',
         \ },
     \ }
 \ }
