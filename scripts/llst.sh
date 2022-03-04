@@ -92,6 +92,11 @@
     else
       NEWMONIKER="$2"
     fi
+
+    if [ -z $NEWMONIKER ]; then
+      NEWMONIKER=${PWD##*/}
+    fi
+
     (
       cd $LOCALDEV || exit
       docker compose stop
