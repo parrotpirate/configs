@@ -32,6 +32,7 @@ if !exists('g:vscode')
   colorscheme dracula
   hi! Normal ctermbg=NONE guibg=NONE
   hi! NonText ctermbg=NONE guibg=NONE
+  hi! Comment guifg=orange
 
 " Enable cursor line position tracking:
   set cursorline
