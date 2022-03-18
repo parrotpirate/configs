@@ -37,41 +37,7 @@ if [ -f /Users/stevep/.ghtoken ]; then
   source /Users/stevep/.ghtoken
 fi
 
-# Customise the Powerlevel9k prompts
-# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=' '
-# POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=$'\uE0B1 '
-# POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{014}\u2570%F{cyan}\uF460%F{073}\uF460%F{109}\uF460%f "
-# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode context ssh dir vcs)
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator ram load background_jobs)
-# POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\uE0C6'
-# POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=$'\uE0C4'
-# POWERLEVEL9K_LEFT_SEGMENT_END_SEPARATOR=''
-# POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$'\uE0C7'
-# POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=$'\uE0C5'
-# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-# POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 DEFAULT_USER='stevep'
-# POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='160'
-# POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='148'
-# POWERLEVEL9K_VI_MODE_INSERT_BACKGROUND='090'
-# POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='040'
-# VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
-# POWERLEVEL9K_VI_INSERT_MODE_STRING='INSERT'
-# POWERLEVEL9K_VI_COMMAND_MODE_STRING='COMMAND'
-# P9K_VI_MODE_VISUAL_STRING='VISUAL'
-# P9K_VI_MODE_SEARCH_STRING='SEARCH'
-
-# # Load Nerd Fonts with Powerlevel9k theme for Zsh
-# POWERLEVEL9K_MODE='nerdfont-complete'
-
-# source  ~/powerlevel9k/powerlevel9k.zsh-theme
-
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -240,8 +206,6 @@ alias gaa="git add --all"
 alias gai="git add --interactive"
 #Git commit
 alias gc="git commit"
-#Git Commit Message
-alias gcm="git commit -m"
 #Git Commit Amend
 alias gca="git commit --amend"
 #Git Checkout
@@ -348,6 +312,18 @@ function gpr() {
   fi
 }
 
+# Git commit message
+function gcm() {
+  if [ -z "$1" ]; then
+    echo Message: 
+    read commitMessage
+  else
+    commitMessage="$1"
+  fi
+
+  git commit -m $commitMessage
+}
+
 #Git reset
 alias grh='git reset --hard && git clean -fd'
 #Git status
@@ -363,7 +339,8 @@ alias nt="open . -a iterm"
 
 #QMK folder
 alias cdqmk="cd /Users/stevep/qmk_firmware"
-alias makedox="make ergodox_ez:mk-2:teensy"
+alias makedox="(cd ~/qmk_firmware && make ergodox_ez:keyboard-sdp:teensy)"
+alias makekeyboard="(cd ~/qmk_firmware && make ergodox_ez:keyboard-sdp:teensy)"
 alias makegamepad="make ergodox_ez:gamepad:teensy"
 
 #Sites folder
@@ -558,11 +535,6 @@ function gcd () {
   fi
 }
 
-# "jj" to enter vi cmd mode
-# bindkey "jj" vi-cmd-mode
-# bindkey "jk" vi-cmd-mode
-# bindkey "kj" vi-cmd-mode
-
 # Set Python Environment
 if command -v pyenv 1>/dev/null 2>&1; then
  eval "$(pyenv init -)"
@@ -586,10 +558,10 @@ ZVM_VISUAL_LINE_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
 ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_BLINKING_UNDERLINE
 
 # The plugin will auto execute this zvm_after_init function
-function zvm_after_init() {
-  zvm_bindkey viins 'jk' zvm_exit_insert_mode
-  zvm_bindkey viins 'kj' zvm_exit_insert_mode
-}
+# function zvm_after_init() {
+#   zvm_bindkey viins 'jk' zvm_exit_insert_mode
+#   zvm_bindkey viins 'kj' zvm_exit_insert_mode
+# }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
