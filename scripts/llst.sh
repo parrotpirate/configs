@@ -55,6 +55,11 @@
       else
         KILLMONIKER="$2"
       fi
+
+      if [ -z $KILLMONIKER ]; then
+        KILLMONIKER=${PWD##*/}
+      fi
+
       (
         cd $LOCALDEV || exit
         docker compose up -wait &>/dev/null
