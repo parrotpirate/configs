@@ -1,7 +1,11 @@
 # Add new admin user
 snippet adminquery "add new admin user"
+SET @UserName = 'stevep';
+SET @UserEmail = 'stephen.parker@q4launch.com';
+SET @UserPass = '`!v getreg("*")`';
+SET @RegTime = NOW();
 INSERT INTO \`wp_users\` (\`user_login\`, \`user_pass\`, \`user_nicename\`, \`user_email\`, \`user_status\`, \`display_name\`, \`user_registered\`)
-VALUES ('stevep', MD5('`!v getreg("*")`'), 'stevep', 'stephen.parker@q4launch.com', '0', 'stevep', '2020-05-12 17:08:47');
+VALUES (@UserName, MD5(@UserPass), @UserName, @UserEmail, '0', @UserName, @RegTime);
 
 INSERT INTO \`wp_usermeta\` (\`umeta_id\`, \`user_id\`, \`meta_key\`, \`meta_value\`)
 VALUES (NULL, (Select max(id) FROM wp_users), 'rich_editing', 'true');
@@ -14,7 +18,7 @@ VALUES (NULL, (Select max(id) FROM wp_users), 'admin_color', 'ectoplasm');
 
 
 INSERT INTO \`wp_usermeta\` (\`umeta_id\`, \`user_id\`, \`meta_key\`, \`meta_value\`)
-VALUES (NULL, (Select max(id) FROM wp_users), 'nickname', 'stevep');
+VALUES (NULL, (Select max(id) FROM wp_users), 'nickname', @UserName);
 
 INSERT INTO \`wp_usermeta\` (\`umeta_id\`, \`user_id\`, \`meta_key\`, \`meta_value\`)
 VALUES (NULL, (Select max(id) FROM wp_users),
