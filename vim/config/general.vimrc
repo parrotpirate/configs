@@ -29,7 +29,9 @@ let g:mkdp_command_for_global = 1
 
 " SET COLOR SCHEME
 if !exists('g:vscode')
-  colorscheme dracula
+  " colorscheme dracula
+  " colorscheme tokyonight
+  colorscheme cyberpunk-neon
   hi! Normal ctermbg=NONE guibg=NONE
   hi! NonText ctermbg=NONE guibg=NONE
   hi! Comment guifg=orange

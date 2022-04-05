@@ -19,6 +19,7 @@ call plug#begin('/Users/stevep/.vim' . '/plugged')
   Plug 'asvetliakov/vim-easymotion', Conda(exists('g:vscode'), { 'as': 'vsc-easymotion' })
 
   " VIM PLUGINS
+  Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
   Plug 'honza/vim-snippets'
   Plug 'machakann/vim-sandwich'
   Plug 'plasticboy/vim-markdown'
