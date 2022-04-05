@@ -1,19 +1,19 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+CONFIGS="$HOME/configs"
+ZSHCONFIGS="$HOME/configs/zsh"
 
 # If you come from bash you might have to change your $PATH.
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="$PATH:$HOME/.composer/vendor/bin"
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-export PATH="$PATH:$HOME/.composer/vendor/bin"
-export PATH="/Users/stevep/Library/Python/3.7/bin:$PATH"
-export PATH="/usr/local/Cellar/todo-txt/*/bin:$PATH"
+# export PATH="$PATH:$HOME/.composer/vendor/bin"
+# export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+# export PATH="$PATH:$HOME/.composer/vendor/bin"
+# export PATH="/Users/stevep/Library/Python/3.7/bin:$PATH"
+# export PATH="/usr/local/Cellar/todo-txt/*/bin:$PATH"
 
 #NVM setup
 export NVM_DIR=~/.nvm
@@ -94,7 +94,6 @@ plugins=(
   autoupdate
   brew
   colored-man-pages
-  # command-not-found
   compleat
   composer
   copyfile
@@ -102,10 +101,6 @@ plugins=(
   docker
   docker-compose
   git-auto-fetch
-  # git-extras
-  # git-flow
-  # git-flow-avh
-  # git-flow-completion
   git-prompt
   git-prune
   history
@@ -563,8 +558,6 @@ ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_BLINKING_UNDERLINE
 #   zvm_bindkey viins 'kj' zvm_exit_insert_mode
 # }
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Final Plugins
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -578,3 +571,6 @@ source $(brew --prefix)/opt/zsh-git-prompt/zshrc.sh
 source $(brew --prefix)/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
