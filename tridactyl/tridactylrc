@@ -26,7 +26,7 @@ set hintnames uniform
 " set hintchars 5468791230
 set hintchars 5432167890
 " set hintshift true
-set editorcmd /usr/local/Cellar/neovim/*/bin/nvim -f
+set editorcmd /usr/local/bin/goneovim %f -w
 
 set modeindicatorshowkeys true
 set visualexitauto false
@@ -81,9 +81,9 @@ bind e scrollpage -0.5
 bind D scrollpage 1
 bind E scrollpage -1
 
-bind i hint -Jc input[type="text"], textarea
-bind I composite hint -Jc input[type="text"], textarea | editor
-bind yi composite hint -J-pipe input,textarea value | yank
+bind i hint -Jc input[type="text"], textarea, input[type="search"]
+bind I composite hint -Jc input[type="text"], textarea, input[type="search"] | editor
+bind yi composite hint -J-pipe input,textarea,input[type="search"] value | yank
 bind ya hint -y
 bind ma hint -qW yank
 bind mA hint -qy
@@ -134,6 +134,7 @@ bind --mode=input       <C-u>   text.backward_kill_line
 " unbindurl q4launch.atlassian.net\/.* --mode=normal .
 seturl q4launch.atlassian.net\/.* allowautofocus true
 unbindurl q4launch.atlassian.net\/.* --mode=normal ,j
+unbindurl q4launch.atlassian.net\/.* --mode=normal m
 bindurl q4launch.atlassian.net\/.* --mode=normal ,j hint -c [class*="cspqsP"]
 unbindurl q4launch.atlassian.net\/.* --mode=normal ,a
 bindurl q4launch.atlassian.net\/.* --mode=normal ,a hint -c [data-testid="media-card-view"]
