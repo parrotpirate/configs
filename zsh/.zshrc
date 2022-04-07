@@ -149,6 +149,7 @@ export VISUAL='/usr/local/Cellar/neovim/HEAD-*/bin/nvim'
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+for f in ${ZSHCONFIGS}/aliases/*.zsh; do source $f; done
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="exa --icons --group-directories-first --color-scale"
