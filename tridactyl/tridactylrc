@@ -11,7 +11,7 @@ colourscheme quake
 " Sometimes the status bar in the bottom left corner overlaps the Tridactyl command line, so set an option to move the status bar to the right.
 "guiset_quiet hoverlink right
 
-guiset_quiet hoverlink top-right 
+guiset_quiet hoverlink top-right
 guiset_quiet statuspanel top-right
 set smoothscroll true
 set allowautofocus false
@@ -81,9 +81,13 @@ bind e scrollpage -0.5
 bind D scrollpage 1
 bind E scrollpage -1
 
-bind i hint -Jc input[type="text"], textarea, input[type="search"]
-bind I composite hint -Jc input[type="text"], textarea, input[type="search"] | editor
-bind yi composite hint -J-pipe input,textarea,input[type="search"] value | yank
+" bind i hint -Jc input[type="text"], textarea, input[type="search"]
+" bind I composite hint -Jc input[type="text"], textarea, input[type="search"] | editor
+bind i hint -Jc input:not([type="checkbox"]),textarea
+" bind I composite hint -Jc input,textarea | editor
+bind yi composite hint -J-pipe input,textarea value | yank
+" @REM bind ,p hint -Jc input, textarea, input[type="search"] -F e => {e.value = tri.excmds.getclip()}
+" @REM bind ,p composite hint -Jc input, textarea, input[type="search"] | getclip | fillcmdline
 bind ya hint -y
 bind ma hint -qW yank
 bind mA hint -qy
@@ -140,6 +144,9 @@ unbindurl q4launch.atlassian.net\/.* --mode=normal ,a
 bindurl q4launch.atlassian.net\/.* --mode=normal ,a hint -c [data-testid="media-card-view"]
 bindurl q4launch.atlassian.net\/.* --mode=normal yr js navigator.clipboard.writeText(document.querySelectorAll("[data-test-id='issue.views.issue-base.foundation.breadcrumbs.breadcrumb-current-issue-container'] li span")[0].textContent);
 
+" WHM SPECIFIC CONFIG
+unbindurl host.q4-host.com:2087\/.* --mode=normal /
+
 " GITHUB SPECIFIC CONFIG
 bindurl github.com\/PropertyBrands\/.* --mode=normal yr js navigator.clipboard.writeText(document.querySelectorAll("#repository-container-header strong[itemprop='name'] a")[0].textContent);
 
@@ -151,7 +158,7 @@ command scrollUp js function n(){function r(n){if(n==null){return null}if(n.scro
 " command scrollUp js function n(){function r(n){if(n==null){return null}if(n.scrollHeight>n.clientHeight){return n}else{return r(n.parentNode)}}var n=document.activeElement;var u=r(n);u.scrollTop-=100}n();
 command scrollDown js function n(){function r(n){if(n==null){return null}if(n.scrollHeight>n.clientHeight){return n}else{return r(n.parentNode)}}var n=document.activeElement;var u=r(n);u.scrollTop=u.scrollTopMax}n();
 " command getScrollableCustom js var ElementsWithScrolls=function(){function a(a,b){return e(a)[b]}function b(b){return b.offsetHeight<b.scrollHeight&&c(a(b,"overflow-y"))}function c(a){return"scroll"==a||"auto"==a}function d(a){return b(a)}var e=document.body&&document.body.currentStyle?function(a){return a.currentStyle}:function(a){return document.defaultView.getComputedStyle(a,null)};return function(){for(var b=[].filter.call(document.querySelectorAll("*"),d),c=0;c<b.length;c++)b[c].classList.add("sdp-custom-scrollable")}}();ElementsWithScrolls();
-command getScrollableCustom js -r markScrollable.js 
+command getScrollableCustom js -r markScrollable.js
 command hintScrollableCustom hint -Jc; [class*="sdp-custom-scrollable"]
 
 bind <C-d> scrollDown
