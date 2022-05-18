@@ -38,7 +38,7 @@ imap <leader>< <c-o><<
 imap <leader>> <c-o>>>
 " Next tab stop
 imap <leader>f <c-f>
-inoremap <leader><leader>s $
+inoremap <leader>s $
 
 " NORMAL MODE MAPPINGS
 if !exists('g:vscode')

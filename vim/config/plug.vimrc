@@ -30,7 +30,8 @@ call plug#begin('/Users/stevep/.vim' . '/plugged')
   Plug 'tpope/vim-repeat'
   Plug 'triglav/vim-visual-increment'
   Plug 'junegunn/vim-slash'
-  Plug 'terryma/vim-multiple-cursors'
+  Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+  " Plug 'terryma/vim-multiple-cursors'
   " Plug 'scrooloose/nerdcommenter'
   " Plug 'tomtom/tcomment_vim'
   Plug 'reedes/vim-lexical'
@@ -49,7 +50,6 @@ call plug#begin('/Users/stevep/.vim' . '/plugged')
   Plug 'PhilRunninger/nerdtree-visual-selection'
   Plug 'ryanoasis/vim-devicons'
   Plug 'tpope/vim-fugitive'
-  Plug 'vim-airline/vim-airline'
   Plug 'scrooloose/syntastic'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'godlygeek/tabular'
@@ -59,6 +59,7 @@ call plug#begin('/Users/stevep/.vim' . '/plugged')
   Plug 'haya14busa/incsearch-fuzzy.vim'
   Plug 'haya14busa/incsearch-easymotion.vim'
   Plug 'jkramer/vim-checkbox'
+  Plug 'vim-airline/vim-airline'
   Plug 'dhruvasagar/vim-table-mode'
   Plug 'retorillo/airline-tablemode.vim'
 
