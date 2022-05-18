@@ -15,6 +15,39 @@
   case $1 in
 
   create | new)
+    parentdir="$(dirname "$(pwd)")"
+    if [ $parentdir == $LOCALSITES ]; then
+      if [[ ! -f wp-config.php ]]; then
+        FOLDER=s/MONIKER=.*/MONIKER=${PWD##*/}/
+        DIR=s%WEB_ROOT=.*%WEB_ROOT=${PWD}%
+        HOST=s/PRODUCTION_HOST=.*/PRODUCTION_HOST=${PWD##*/}.com/
+        CHECK=${PWD##*/}
+        cp $LOCALDEV/wordpress/wp-config.php .
+        (
+          cd $LOCALDEV || exit
+          if [[ -f .env ]]; then
+            source .env
+            if [[ ! $MONIKER == $CHECK ]]; then
+              mv .env environments/."$MONIKER"
+              cp .env.example .env
+              sed -i '' "$FOLDER" ./.env
+              sed -i '' "$DIR" ./.env
+              sed -i '' "$HOST" ./.env
+              nvim .env
+            fi
+          else
+            cp .env.example .env
+            sed -i '' "$FOLDER" ./.env
+            sed -i '' "$DIR" ./.env
+            sed -i '' "$HOST" ./.env
+            nvim .env
+          fi
+        )
+      fi
+    else
+      echo "Please navigate to a local site root folder."
+      return 0
+    fi
     (
       cd $LOCALDEV || exit
       docker compose up -d
@@ -43,21 +76,20 @@
 
   down | remove | delete | kill | rm)
     (
-      # cd $LOCALDEV || exit
-      # docker compose up -d
-      # sleep 1
-      # docker compose exec php wp db export seed.sql --allow-root
-      # sleep 1
-      # docker compose down
+      # if [ -z "$2" ]; then
+      #   echo Site moniker:
+      #   read KILLMONIKER
+      # else
+      #   KILLMONIKER="$2"
+      # fi
+
+      # if [ -z $KILLMONIKER ]; then
+      #   KILLMONIKER=${PWD##*/}
+      # fi
       if [ -z "$2" ]; then
-        echo Site moniker:
-        read KILLMONIKER
+        KILLMONIKER=${PWD##*/}
       else
         KILLMONIKER="$2"
-      fi
-
-      if [ -z $KILLMONIKER ]; then
-        KILLMONIKER=${PWD##*/}
       fi
 
       (
@@ -86,20 +118,26 @@
           rm -rf "$KILLMONIKER"
         fi
       )
+      if [ -z "$2" ]; then
+        cd "$LOCALSITES" || exit
+        $SHELL
+      fi
     )
     ;;
 
   switch | swap)
     # read "NEWMONIKER?New moniker: "
+    # if [ -z "$2" ]; then
+    #   echo New moniker:
+    #   read NEWMONIKER
+    # else
+    #   NEWMONIKER="$2"
+    # fi
+
     if [ -z "$2" ]; then
-      echo New moniker:
-      read NEWMONIKER
+      NEWMONIKER=${PWD##*/}
     else
       NEWMONIKER="$2"
-    fi
-
-    if [ -z $NEWMONIKER ]; then
-      NEWMONIKER=${PWD##*/}
     fi
 
     (
@@ -147,24 +185,29 @@
     ;;
 
   setup)
-    if [[ ! -f wp-config.php ]]; then
-      FOLDER=s/MONIKER=.*/MONIKER=${PWD##*/}/
-      DIR=s%WEB_ROOT=.*%WEB_ROOT=${PWD}%
-      HOST=s/PRODUCTION_HOST=.*/PRODUCTION_HOST=${PWD##*/}.com/
-      cp $LOCALDEV/wordpress/wp-config.php .
-      # mv /Users/stevep/Downloads/seed.sql .
-      (
-        cd $LOCALDEV || exit
-        if [[ -f .env ]]; then
-          source .env
-          mv .env environments/."$MONIKER"
-        fi
-        cp .env.example .env
-        sed -i '' "$FOLDER" ./.env
-        sed -i '' "$DIR" ./.env
-        sed -i '' "$HOST" ./.env
-        nvim .env
-      )
+    parentdir="$(dirname "$(pwd)")"
+    if [ $parentdir == $LOCALSITES ]; then
+      if [[ ! -f wp-config.php ]]; then
+        FOLDER=s/MONIKER=.*/MONIKER=${PWD##*/}/
+        DIR=s%WEB_ROOT=.*%WEB_ROOT=${PWD}%
+        HOST=s/PRODUCTION_HOST=.*/PRODUCTION_HOST=${PWD##*/}.com/
+        cp $LOCALDEV/wordpress/wp-config.php .
+        (
+          cd $LOCALDEV || exit
+          if [[ -f .env ]]; then
+            source .env
+            mv .env environments/."$MONIKER"
+          fi
+          cp .env.example .env
+          sed -i '' "$FOLDER" ./.env
+          sed -i '' "$DIR" ./.env
+          sed -i '' "$HOST" ./.env
+          nvim .env
+        )
+      fi
+    else
+      echo "Please navigate to a local site root folder."
+      return 0
     fi
     ;;
 
