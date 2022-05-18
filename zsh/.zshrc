@@ -9,6 +9,8 @@ ZSHCONFIGS="$HOME/configs/zsh"
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/php@7.4/bin:$PATH"
+export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
 # export PATH="$PATH:$HOME/.composer/vendor/bin"
 # export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 # export PATH="$PATH:$HOME/.composer/vendor/bin"
@@ -101,6 +103,8 @@ plugins=(
   docker
   docker-compose
   git-auto-fetch
+  git-flow
+  git-flow-completion
   git-prompt
   git-prune
   history
@@ -137,6 +141,12 @@ fi
 
 export VISUAL='/usr/local/Cellar/neovim/HEAD-*/bin/nvim'
 
+# Load aliases
+for f in ${ZSHCONFIGS}/aliases/*.zsh; do source $f; done
+
+# Load functions
+for f in ${ZSHCONFIGS}/functions/*.zsh; do source $f; done
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -149,9 +159,6 @@ export VISUAL='/usr/local/Cellar/neovim/HEAD-*/bin/nvim'
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-for f in ${ZSHCONFIGS}/aliases/*.zsh; do source $f; done
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="exa --icons --group-directories-first --color-scale"
 alias lsa="exa --all --icons --group-directories-first --color-scale"
 alias lsl="exa -lbghHmuF --all --icons --group-directories-first --color-scale --git --time-style=long-iso"
@@ -522,7 +529,7 @@ q4sh() {
 }
 
 # CLONE AND CD
-function gcd () {
+function gccd () {
   if [ -n "$2" ]; then
     gh repo clone "$1" "$2" && cd "$PWD"/"$2"
   else
