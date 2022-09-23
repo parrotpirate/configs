@@ -35,12 +35,14 @@ endfunction
   command! -bang Movepreviousgroup call VSCodeNotify('workbench.action.moveEditorToLeftGroup')
   command! -bang Movenextgroup call VSCodeNotify('workbench.action.moveEditorToRightGroup')
   command! -bang VisualSelectionToLineComment call VisualSelectionToLineComment()
+  command! -bang Fullclose call VSCodeNotify('macros.fullClose')
   AlterCommand sc Showcommands
 
 " VSCode mappings
   nnoremap <leader>w <Cmd>Write<cr>
   nnoremap <leader>z <Cmd>Wq<cr>
   nnoremap <leader>q <Cmd>Quit!<cr>
+  nnoremap <leader>Q <Cmd>Fullclose<cr>
   nnoremap gx <Cmd>Quit!<cr>
   nnoremap <leader>p <Cmd>Edit<cr>
   nnoremap <leader>p <Cmd>Showcommands<cr>
