@@ -1,5 +1,6 @@
 "vimt: set filetype=tridactyl
-sanitise tridactyllocal tridactylsync
+" sanitise tridactyllocal tridactylsync
+bind ZZ composite sanitise tridactyllocal tridactylsync; qall
 "---
 
 "CONFIG SETTINGS
@@ -11,7 +12,7 @@ colourscheme quake
 " Sometimes the status bar in the bottom left corner overlaps the Tridactyl command line, so set an option to move the status bar to the right.
 "guiset_quiet hoverlink right
 
-guiset_quiet hoverlink top-right
+guiset_quiet hoverlink bottom-left
 guiset_quiet statuspanel top-right
 set smoothscroll true
 set allowautofocus false
@@ -170,3 +171,6 @@ set hintautoselect true
 set tabclosepinned false
 guiset_quiet tabs always
 guiset_quiet navbar always
+
+" unbind --mode=normal m
+" unbind m
