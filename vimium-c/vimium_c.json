@@ -75,7 +75,7 @@
 		"map A Vomnibar.activate keyword=\"addbm\"",
 		"map s Vomnibar.activate keyword=\"g\"",
 		"map S Vomnibar.activateInNewTab keyword=\"g\"",
-		"map x removeTab keepWindow=\"mayClose\"",
+		"map x removeTab mayClose",
 		""
 	],
 	"linkHintCharacters": "0123456789",
