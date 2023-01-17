@@ -56,3 +56,20 @@ function finds() {
     cd "${target[$selection]}"
   fi
 }
+
+ziprez() {
+  folder=${PWD##*/}
+  folder=${folder:-/}
+  destination="$HOME/Downloads/rezfusion-components.zip"
+
+  if [[ -f "$destination" ]]; then
+    rm "$destination"
+  fi
+
+  if [[ $folder == "rezfusion-components" ]]; then
+    cd ..
+    zip -rX "$destination" rezfusion-components --exclude rezfusion-components/\*.zip rezfusion-components/.git/\* rezfusion-components/.gitignore rezfusion-components/node_modules/\* rezfusion-components/.DS_Store
+  else
+    zip -rX "$destination" rezfusion-components --exclude rezfusion-components/\*.zip rezfusion-components/.git/\* rezfusion-components/.gitignore rezfusion-components/node_modules/\* rezfusion-components/.DS_Store
+  fi
+}
