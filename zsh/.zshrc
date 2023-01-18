@@ -3,6 +3,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 CONFIGS="$HOME/configs"
+SCRIPTS="$HOME/configs/scripts"
 ZSHCONFIGS="$HOME/configs/zsh"
 
 # If you come from bash you might have to change your $PATH.
@@ -318,7 +319,7 @@ function gpr() {
 # Git commit message
 function gcm() {
   if [ -z "$1" ]; then
-    echo Message: 
+    echo Message:
     read commitMessage
   else
     commitMessage="$1"
