@@ -1,0 +1,46 @@
+.task-content {
+  &:hover {
+    .task-notes {
+      p {
+        height: auto;
+        color: #fff !important;
+        pointer-events: all;
+
+        &:after {
+          display: none;
+          opacity: 0;
+        }
+
+        a {
+          color: #24cc8f !important;
+        }
+      }
+    }
+  }
+
+  .task-notes {
+    p {
+      position: relative;
+      height: 0;
+      color: transparent !important;
+      transition: all 0.3s ease-in-out;
+      pointer-events: none;
+
+      &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        color: white;
+        content: "↵";
+        transition: all 0.3s ease-in-out;
+        opacity: 1;
+      }
+
+      a {
+        color: transparent;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+}
