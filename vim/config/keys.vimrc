@@ -72,8 +72,12 @@ nmap <leader>vr :so $MYVIMRC<cr>
 " Ctrl-j/k deletes blank line below/above, and Alt-j/k inserts.
 nnoremap <silent><leader>dj m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
 nnoremap <silent><leader>dk m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
-nnoremap <silent><leader>j :put _<CR>
-nnoremap <silent><leader>k :put! _<CR>
+" nnoremap <silent><leader>j :put _<CR>
+nnoremap <silent><leader>j :<C-u>put =repeat(nr2char(10),v:count)<CR>
+nnoremap <silent><leader>aj :<C-u>put =repeat(nr2char(10),v:count)<Bar>execute "'[-1"<CR>
+" nnoremap <silent><leader>k :put! _<CR>
+nnoremap <silent><leader>k :<C-u>put!=repeat(nr2char(10),v:count)<CR>
+nnoremap <silent><leader>ak :<C-u>put!=repeat(nr2char(10),v:count)<Bar>execute "']+1"<CR>
 " Remove all empty lines
 nnoremap <leader>cel :Cel<cr>
 " Remove all lines
