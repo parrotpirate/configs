@@ -1,11 +1,8 @@
 {
-  "trailingComma": "es5",
-  "tabWidth": 2,
-  "semi": true,
-  "singleQuote": true,
-  "quoteProps": "consistent",
+  "arrowParens": "always",
+  "bracketSameLine": true,
+  "bracketSpacing": true,
   "endOfLine": "lf",
-  "trailingCommaPHP": "php7.3",
   "overrides": [
     {
       "files": "*.js",
@@ -13,5 +10,12 @@
         "parser": "babel"
       }
     }
-  ]
+  ],
+  "quoteProps": "consistent",
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "trailingCommaPHP": "php7.3",
+  "useTabs": false
 }
