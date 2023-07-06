@@ -10,8 +10,8 @@ ZSHCONFIGS="$HOME/configs/zsh"
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/php/bin:$PATH"
-export PATH="/usr/local/opt/php/sbin:$PATH"
+# export PATH="/usr/local/opt/php/bin:$PATH"
+# export PATH="/usr/local/opt/php/sbin:$PATH"
 # export PATH="$PATH:$HOME/.composer/vendor/bin"
 # export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 # export PATH="$PATH:$HOME/.composer/vendor/bin"
@@ -583,3 +583,6 @@ source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source /Users/stevep/.op/plugins.sh
+export PATH="/usr/local/opt/php@8.1/bin:$PATH"
+export PATH="/usr/local/opt/php@8.1/sbin:$PATH"
