@@ -31,12 +31,12 @@ source $HOME/.vim/config/vim_checkbox.vimrc
 source $HOME/.vim/config/vim_pandoc.vimrc
 source $HOME/.vim/config/table_mode.vimrc
 source $HOME/.vim/config/pandoc.vimrc
+source $HOME/.vim/config/hop_conf.vimrc
 
 if !exists('g:vscode')
   source $HOME/.vim/config/indent_guides.vimrc
   source $HOME/.vim/config/supertab.vimrc
   source $HOME/.vim/config/todo.vimrc
-  source $HOME/.vim/config/hop_conf.vimrc
 endif
 
 " NEOVIM PLUGIN CONFIG/MAPPING
