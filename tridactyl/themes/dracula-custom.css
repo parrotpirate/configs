@@ -11,7 +11,8 @@
   --purple: #bd93f9;
   --red: #ff5555;
   --yellow: #f1fa8c;
-  --font: monospace; /*"FiraCode Nerd Font Mono";*/
+  /* --font: monospace; "FiraCode Nerd Font Mono"; */
+  --font: "Hack Nerd Font Mono";
 
   --tridactyl-fg: var(--fg);
   --tridactyl-bg: var(--bg);
@@ -25,6 +26,7 @@
   --tridactyl-cmdl-font-family: var(--font);
   --tridactyl-cmplt-font-family: var(--font);
   --tridactyl-hintspan-font-family: var(--font);
+  --tridactyl-hintspan-font-size: 16px;
 
   /* Hint character tags */
   --tridactyl-hintspan-fg: var(--bg) !important;
@@ -93,7 +95,7 @@
 
 #completions .HistoryCompletionSource table {
   width: 100%;
-  font-size: 9pt;
+  font-size: 11pt;
   border-spacing: 0;
   table-layout: fixed;
 }
@@ -153,7 +155,7 @@
   background: var(--tridactyl-bg) !important;
   border: unset !important;
   border: 1px var(--purple) solid !important;
-  font-size: 12pt !important;
+  font-size: 9pt !important;
   /*font-weight: 200 !important;*/
   padding: 0.8ex !important;
 }

@@ -1,4 +1,4 @@
-"vimt: set filetype=tridactyl
+vim: set filetype=tridactyl
 " sanitise tridactyllocal tridactylsync
 bind ZZ composite sanitise tridactyllocal tridactylsync; qall
 "---
@@ -6,44 +6,31 @@ bind ZZ composite sanitise tridactyllocal tridactylsync; qall
 "CONFIG SETTINGS
 "---
 
-" colourscheme --url https://raw.githubusercontent.com/dracula/tridactyl/main/dracula.css dracula
 colourscheme dracula-custom
 " colourscheme quake
 
-" Sometimes the status bar in the bottom left corner overlaps the Tridactyl command line, so set an option to move the status bar to the right.
-"guiset_quiet hoverlink right
 
-guiset_quiet hoverlink left
-"guiset_quiet statuspanel top-right
-set newtab about:blank
-set homepages ["about:blank"]
-set smoothscroll true
+guiset_quiet hoverlink left " Sometimes the status bar in the bottom left corner overlaps the Tridactyl command line, so set an option to move the status bar to the right.
+
 set allowautofocus false
-" ALLOW AUTOFOCUS ON WORDPRESS LOGIN SCREEN
-" seturl .*\/wp-login.* allowautofocus true
-" set hintfiltermode vimperator
-set hintfiltermode vimperator-reflow
 set hintdelay 100
+set hintfiltermode vimperator-reflow
 set hintnames numeric
-"set hintnames uniform
-" set hintnames short
-" set hintchars 5468791230
-"set hintchars 5432167890
 set hintshift true
+set homepages ["about:blank"]
+set newtab about:blank
+set smoothscroll true
 " set editorcmd /usr/local/bin/goneovim %f -w
 
 set modeindicatorshowkeys true
 set visualexitauto false
-" set cursorpos beginning
 "set tabopencontaineraware true
 
 " But also support Tridactyl search too.
 bind ,/ fillcmdline find
-"bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
 " Remove search highlighting.
-" bind ,<Space> nohlsearch
 bind <Esc> nohlsearch
 
 " Stupid workaround to let hint -; be used with composite which steals semi-colons
@@ -51,9 +38,7 @@ command hint_focus hint -;
 command workcontainer tabopen -c Work
 command personalcontainer tabopen -c Personal
 command src source
-" Open right click menu on links
-"bind ;c composite hint_focus; !s xdotool key Menu
-" bind ,c hint -Jc input[type="checkbox"]
+
 bind ,,; fillcmdline_notrail
 bind c hint -Jc input[type="checkbox"]
 bind mc hint -qJc input[type="checkbox"]
@@ -88,8 +73,8 @@ bind E scrollpage -1
 bind i hint -Jc input:not([type="checkbox"]),textarea
 " bind I composite hint -Jc input,textarea | editor
 bind yi composite hint -J-pipe input,textarea value | yank
-" @REM bind ,p hint -Jc input, textarea, input[type="search"] -F e => {e.value = tri.excmds.getclip()}
-" @REM bind ,p composite hint -Jc input, textarea, input[type="search"] | getclip | fillcmdline
+" bind ,p hint -Jc input, textarea, input[type="search"] -F e => {e.value = tri.excmds.getclip()}
+" bind ,p composite hint -Jc input, textarea, input[type="search"] | getclip | fillcmdline
 bind ya hint -y
 bind ma hint -qW yank
 bind mA hint -qy
