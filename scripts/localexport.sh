@@ -39,8 +39,8 @@ function output() {
 
 # Get the name of the parent directory
 function get_parent_dir() {
-  # parent_dir=$(basename "$(dirname "$PWD")")
-  parent_dir=$(basename "$PWD")
+  parent_dir=$(basename "$(dirname "$PWD")")
+  # parent_dir=$(basename "$PWD")
   backup_name="${parent_dir}-export.zip"
 }
 
