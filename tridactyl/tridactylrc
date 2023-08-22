@@ -6,14 +6,17 @@ bind ZZ composite sanitise tridactyllocal tridactylsync; qall
 "CONFIG SETTINGS
 "---
 
-colourscheme quake
-" colourscheme greenmat
+" colourscheme --url https://raw.githubusercontent.com/dracula/tridactyl/main/dracula.css dracula
+colourscheme dracula-custom
+" colourscheme quake
 
 " Sometimes the status bar in the bottom left corner overlaps the Tridactyl command line, so set an option to move the status bar to the right.
 "guiset_quiet hoverlink right
 
-guiset_quiet hoverlink bottom-left
-guiset_quiet statuspanel top-right
+guiset_quiet hoverlink left
+"guiset_quiet statuspanel top-right
+set newtab about:blank
+set homepages ["about:blank"]
 set smoothscroll true
 set allowautofocus false
 " ALLOW AUTOFOCUS ON WORDPRESS LOGIN SCREEN
@@ -21,13 +24,13 @@ set allowautofocus false
 " set hintfiltermode vimperator
 set hintfiltermode vimperator-reflow
 set hintdelay 100
-" set hintnames numeric
-set hintnames uniform
+set hintnames numeric
+"set hintnames uniform
 " set hintnames short
 " set hintchars 5468791230
-set hintchars 5432167890
-" set hintshift true
-set editorcmd /usr/local/bin/goneovim %f -w
+"set hintchars 5432167890
+set hintshift true
+" set editorcmd /usr/local/bin/goneovim %f -w
 
 set modeindicatorshowkeys true
 set visualexitauto false
@@ -53,9 +56,7 @@ command src source
 " bind ,c hint -Jc input[type="checkbox"]
 bind ,,; fillcmdline_notrail
 bind c hint -Jc input[type="checkbox"]
-" bind ,mc hint -qJc input[type="checkbox"]
 bind mc hint -qJc input[type="checkbox"]
-" bind ,C hint -J;c input[type="checkbox"]
 bind C hint -J;c input[type="checkbox"]
 bind ,t fillcmdline taball
 bind ,,t fillcmdline tab
@@ -174,3 +175,6 @@ guiset_quiet navbar always
 
 " unbind --mode=normal m
 " unbind m
+
+" Don't run tridactyl on these sites
+autocmd DocStart mail.google.com mode ignore
