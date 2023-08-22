@@ -13,6 +13,7 @@ source $HOME/.vim/config/keys.vimrc
 " PLUGIN SETTINGS/MAPPINGS
 source $HOME/.vim/config/airline.vimrc
 source $HOME/.vim/config/easy_motion.vimrc
+" source $HOME/.vim/config/vim_flash.vimrc
 source $HOME/.vim/config/vim_yoink.vimrc
 source $HOME/.vim/config/vim_cutlass.vimrc
 source $HOME/.vim/config/vim_subversive.vimrc
@@ -35,6 +36,7 @@ if !exists('g:vscode')
   source $HOME/.vim/config/indent_guides.vimrc
   source $HOME/.vim/config/supertab.vimrc
   source $HOME/.vim/config/todo.vimrc
+  source $HOME/.vim/config/hop_conf.vimrc
 endif
 
 " NEOVIM PLUGIN CONFIG/MAPPING

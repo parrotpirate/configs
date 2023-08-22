@@ -15,8 +15,14 @@ call plug#begin('/Users/stevep/.vim' . '/plugged')
   Plug 'iamcco/markdown-preview.nvim', Cond(has('nvim'), { 'do': 'cd app & yarn install'  })
   Plug 'SirVer/ultisnips', Cond(has('nvim'))
   Plug 'glacambre/firenvim', Cond(has('nvim'), { 'do': { _ -> firenvim#install(0) } })
-  Plug 'easymotion/vim-easymotion', Conda(!exists('g:vscode'))
-  Plug 'asvetliakov/vim-easymotion', Conda(exists('g:vscode'), { 'as': 'vsc-easymotion' })
+  " Plug 'easymotion/vim-easymotion', Conda(!exists('g:vscode'))
+  " Plug 'asvetliakov/vim-easymotion', Conda(exists('g:vscode'), { 'as': 'vsc-easymotion' })
+  " Plug 'phaazon/hop.nvim', Cond(has('nvim'))
+  " Plug 'folke/flash.nvim', Cond(has('nvim'))
+if has('nvim')
+  " Plug 'phaazon/hop.nvim', {'commit': 'caaccee'}
+  Plug 'smoka7/hop.nvim'
+endif
 
   " VIM PLUGINS
   Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
