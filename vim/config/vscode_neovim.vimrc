@@ -36,6 +36,11 @@ endfunction
   command! -bang Movenextgroup call VSCodeNotify('workbench.action.moveEditorToRightGroup')
   command! -bang VisualSelectionToLineComment call VisualSelectionToLineComment()
   command! -bang Fullclose call VSCodeNotify('macros.fullClose')
+  command! -bang NextTab call VSCodeNotify('workbench.action.nextEditor')
+  command! -bang PreviousTab call VSCodeNotify('workbench.action.previousEditor')
+  command! -bang NewTab call VSCodeNotify('workbench.action.files.newUntitledFile')
+  command! -bang OpenExplorer call VSCodeNotify('workbench.view.explorer')
+  command! -bang ToggleSidebar call VSCodeNotify('workbench.action.toggleSidebarVisibility')
   AlterCommand sc Showcommands
 
 " VSCode mappings
@@ -47,8 +52,13 @@ endfunction
   nnoremap <leader>p <Cmd>Edit<cr>
   nnoremap <leader>p <Cmd>Showcommands<cr>
   nnoremap <leader>e <Cmd>Quickopen<cr>
-  nnoremap <leader>h <Cmd>Previousgroup<cr>
-  nnoremap <leader>l <Cmd>Nextgroup<cr>
+  nnoremap <leader>E <Cmd>OpenExplorer<cr>
+  nnoremap <leader>b <Cmd>ToggleSidebar<cr>
+  nnoremap <leader>t <Cmd>NewTab<cr>
+  nnoremap <leader>h <Cmd>PreviousTab<cr>
+  nnoremap <leader>l <Cmd>NextTab<cr>
+  nnoremap <leader>H <Cmd>Previousgroup<cr>
+  nnoremap <leader>L <Cmd>Nextgroup<cr>
   nnoremap <leader><leader>h <Cmd>Movepreviousgroup<cr>
   nnoremap <leader><leader>l <Cmd>Movenextgroup<cr>
   " xnoremap <leader>E <Cmd>Showcommands<cr>
