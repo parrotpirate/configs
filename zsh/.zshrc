@@ -1,3 +1,4 @@
+# zmodload zsh/zprof
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -10,21 +11,15 @@ ZSHCONFIGS="$HOME/configs/zsh"
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-# export PATH="/usr/local/opt/php/bin:$PATH"
-# export PATH="/usr/local/opt/php/sbin:$PATH"
-# export PATH="$PATH:$HOME/.composer/vendor/bin"
-# export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-# export PATH="$PATH:$HOME/.composer/vendor/bin"
-# export PATH="/Users/stevep/Library/Python/3.7/bin:$PATH"
-# export PATH="/usr/local/Cellar/todo-txt/*/bin:$PATH"
 
 #NVM setup
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR="$HOME/.nvm"
 export TERM="xterm-256color"
 export DISPLAY=:0.0
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
+
 fpath=(~/.zsh/completions $fpath)
-autoload -U compinit && compinit
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/stevep/.oh-my-zsh"
@@ -114,7 +109,6 @@ plugins=(
   rsync
   sudo
   symfony-console
-  # vi-mode
   vscode
   wp-cli
   yarn
@@ -122,6 +116,7 @@ plugins=(
   zsh-autosuggestions
   zsh-completions
   zsh-exa
+  zsh-nvm
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -572,10 +567,8 @@ ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_BLINKING_UNDERLINE
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 if type brew &>/dev/null; then
  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
- autoload -Uz compinit
- compinit
 fi
+
 source $(brew --prefix)/opt/zsh-git-prompt/zshrc.sh
 source $(brew --prefix)/share/zsh-navigation-tools/zsh-navigation-tools.plugin.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -586,3 +579,26 @@ source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source /Users/stevep/.op/plugins.sh
 export PATH="/usr/local/opt/php@8.1/bin:$PATH"
 export PATH="/usr/local/opt/php@8.1/sbin:$PATH"
+
+# Load and run compinit
+# autoload -Uz compinit
+# for dump in ~/.zcompdump(N.mh+24); do
+#   compinit
+# done
+# compinit -C
+# Execute code in the background to not affect the current session
+{
+  # Compile zcompdump, if modified, to increase startup speed.
+  zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+  if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
+    zcompile "$zcompdump"
+  fi
+} &!
+
+autoload -Uz compinit
+if [ $(date +'%j') != $(/usr/bin/stat -f '%Sm' -t '%j' ${ZDOTDIR:-$HOME}/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
+# zprof
