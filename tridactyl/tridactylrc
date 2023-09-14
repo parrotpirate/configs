@@ -102,40 +102,50 @@ bind x tabclose
 bind X undo tab
 bind zz winclose
 
-bind --mode=ex          <C-a>   text.beginning_of_line
-bind --mode=insert      <C-a>   text.beginning_of_line
-bind --mode=input       <C-a>   text.beginning_of_line
-bind --mode=ex          <C-e>   text.end_of_line
-bind --mode=insert      <C-e>   text.end_of_line
-bind --mode=input       <C-e>   text.end_of_line
-bind --mode=ex          <C-f>   text.forward_word
-bind --mode=insert      <C-f>   text.forward_word
-bind --mode=input       <C-f>   text.forward_word
+bind --mode=ex          <C-i>   text.beginning_of_line
+bind --mode=insert      <C-i>   text.beginning_of_line
+bind --mode=input       <C-i>   text.beginning_of_line
+bind --mode=ex          <C-a>   text.end_of_line
+bind --mode=insert      <C-a>   text.end_of_line
+bind --mode=input       <C-a>   text.end_of_line
+bind --mode=ex          <C-w>   text.forward_word
+bind --mode=insert      <C-w>   text.forward_word
+bind --mode=input       <C-w>   text.forward_word
+bind --mode=ex          <C-b>   text.backward_word
+bind --mode=insert      <C-b>   text.backward_word
+bind --mode=input       <C-b>   text.backward_word
 bind --mode=ex          <C-k>   text.kill_line
 bind --mode=insert      <C-k>   text.kill_line
 bind --mode=input       <C-k>   text.kill_line
 bind --mode=ex          <C-u>   text.backward_kill_line
 bind --mode=insert      <C-u>   text.backward_kill_line
 bind --mode=input       <C-u>   text.backward_kill_line
-" Requires custom firefox build: https://github.com/glacambre/firefox-patches
-" bind --mode=ex          <C-w>   text.backward_kill_word
-" bind --mode=insert      <C-w>   text.backward_kill_word
-" bind --mode=input       <C-w>   text.backward_kill_word
+bind --mode=ex          <C-d><C-b>   text.backward_kill_word
+bind --mode=insert      <C-d><C-b>   text.backward_kill_word
+bind --mode=input       <C-d><C-b>   text.backward_kill_word
+bind --mode=ex          <C-d><C-w>   text.kill_word
+bind --mode=insert      <C-d><C-w>   text.kill_word
+bind --mode=input       <C-d><C-w>   text.kill_word
+
+bind --mode=ex <C-j> ex.next_completion
+bind --mode=ex <C-k> ex.prev_completion
 
 " JIRA SPECIFIC CONFIG
 " unbindurl q4launch.atlassian.net\/.* --mode=normal i
 " unbindurl q4launch.atlassian.net\/.* --mode=normal /
 " unbindurl q4launch.atlassian.net\/.* --mode=normal .
-seturl q4launch.atlassian.net\/.* allowautofocus true
-unbindurl q4launch.atlassian.net\/.* --mode=normal ,j
-unbindurl q4launch.atlassian.net\/.* --mode=normal m
-bindurl q4launch.atlassian.net\/.* --mode=normal ,j hint -c [class*="cspqsP"]
-unbindurl q4launch.atlassian.net\/.* --mode=normal ,a
-bindurl q4launch.atlassian.net\/.* --mode=normal ,a hint -c [data-testid="media-card-view"]
-bindurl q4launch.atlassian.net\/.* --mode=normal yr js navigator.clipboard.writeText(document.querySelectorAll("[data-test-id='issue.views.issue-base.foundation.breadcrumbs.breadcrumb-current-issue-container'] li span")[0].textContent);
+seturl (q4launch|bluetent).atlassian.net\/.* allowautofocus true
+unbindurl (q4launch|bluetent).atlassian.net\/.* --mode=normal ,j
+unbindurl (q4launch|bluetent).atlassian.net\/.* --mode=normal m
+bindurl (q4launch|bluetent).atlassian.net\/.* --mode=normal ,j hint -c [class*="cspqsP"]
+unbindurl (q4launch|bluetent).atlassian.net\/.* --mode=normal ,a
+bindurl (q4launch|bluetent).atlassian.net\/.* --mode=normal ,a hint -c [data-testid="media-card-view"]
+bindurl (q4launch|bluetent).atlassian.net\/.* --mode=normal yr js navigator.clipboard.writeText(document.querySelectorAll("[data-test-id='issue.views.issue-base.foundation.breadcrumbs.breadcrumb-current-issue-container'] li span")[0].textContent);
 
 " WHM SPECIFIC CONFIG
 unbindurl host.q4-host.com:2087\/.* --mode=normal /
+unbindurl host.*\/.*\/filemanager\/index.html F
+bindurl host.*\/.*\/filemanager\/index.html F hint -c [class*="content"], [class*="dt-col-file"]
 
 " GITHUB SPECIFIC CONFIG
 bindurl github.com\/PropertyBrands\/.* --mode=normal yr js navigator.clipboard.writeText(document.querySelectorAll("#repository-container-header strong[itemprop='name'] a")[0].textContent);
