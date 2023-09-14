@@ -79,16 +79,19 @@ bind ya hint -y
 bind ma hint -qW yank
 bind mA hint -qy
 bind yt hint -p
+bind yp hint -F e => {navigator.clipboard.readText().then(text=>{e.value=text})}
 bind mt hint -qp
 bind b fillcmdline bmarks
 bind B fillcmdline bmarks -t
 bind O fillcmdline tabopen
 bind t hint -t
+bind ,S hint -c input[type="submit"]
 bind --mode=hint <Space> hint.pushSpace
 bind --mode=normal V mode visual
 bind --mode=visual V mode normal
 bind --mode=visual y composite js document.getSelection().toString() | yank; js document.getSelection().empty(); mode normal; hidecmdline
 bind --mode=normal <C-v> mode ignore
+bind --mode=insert <C-v> mode ignore
 bind --mode=ignore <C-v> mode normal
 bind --mode=visual <C-c> <Esc>
 bind --mode=hint <C-c> <Esc>
