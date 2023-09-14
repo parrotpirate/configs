@@ -73,3 +73,7 @@ ziprez() {
     zip -rX "$destination" rezfusion-components --exclude rezfusion-components/\*.zip rezfusion-components/.git/\* rezfusion-components/.gitignore rezfusion-components/node_modules/\* rezfusion-components/.DS_Store
   fi
 }
+
+updateiiqplatform() {
+  composer require propertybrands/iiq-wordpress-plugin:"$1" -W --ignore-platform-reqs --no-install
+}
